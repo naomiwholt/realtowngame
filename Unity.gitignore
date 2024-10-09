@@ -29,6 +29,9 @@
 
 # Ignore Visual Studio cache directory
 .vs/
+/.vsconfig
+*.csproj
+*.sln
 
 # Ignore Gradle cache directory
 .gradle/
@@ -36,9 +39,7 @@
 # Ignore VS/MD/Consulo solution and project files
 ExportedObj/
 .consulo/
-*.csproj
 *.unityproj
-*.sln
 *.suo
 *.tmp
 *.user
