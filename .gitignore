@@ -6,3 +6,4 @@ Library/ArtifactDB
 /Library
 /Library/Bee
 /Library/Bee
+*.log
