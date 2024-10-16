@@ -62,21 +62,20 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
-    <Compile Include="Assets\Scripts\Editor Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\GridManager.cs" />
-    <Compile Include="Assets\Scripts\Editor Scripts\SpriteReplacerTool.cs" />
+    <Compile Include="Assets\Scripts\Managers\SceneController.cs" />
     <Compile Include="Assets\Scripts\InteractableComputerScripts\MiniGameManager.cs" />
     <Compile Include="Assets\Scripts\InteractableComputerScripts\PlatformerGame\PlatformerPlayer.cs" />
-    <Compile Include="Assets\Scripts\Editor Scripts\TextureReplacerTool.cs" />
     <Compile Include="Assets\Scripts\InteractableComputerScripts\ComputerManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\EssentialsManager.cs" />
     <Compile Include="Assets\Scripts\InteractableComputerScripts\EmailSystem.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\IsometricDepthSorting.cs" />
     <Compile Include="Assets\Scripts\ObjectPlacementManager.cs" />
-    <Compile Include="Assets\Scripts\Editor Scripts\SortingOrderBaker.cs" />
     <Compile Include="Assets\Scripts\InteractableComputerScripts\PlatformerGame\PlatformerGameManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\ButtonTest.cs" />
     <Compile Include="Assets\CameraInputActions.cs" />
   </ItemGroup>
   <ItemGroup>

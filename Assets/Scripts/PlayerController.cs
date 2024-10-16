@@ -3,21 +3,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private GridManager gridManager;
-
-    private IsometricDepthSorting depthSortingManager;        // Reference to the sorting manager
+    private IsometricDepthSorting depthSortingManager;  // Reference to the sorting manager
 
     public float moveSpeed = 5f;
     public Vector2 moveInput;
     public bool isMovingToClick = false;
 
-    private Vector2Int playerGridPosition;
     private Vector3 targetPosition;
-
     private Animator animator;
     private Vector3 lastMoveDirection;
     private SpriteRenderer spriteRenderer;
-
     private PlayerInputActions playerInputActions;
 
     void Awake()
@@ -42,18 +37,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        gridManager = FindObjectOfType<GridManager>();
-       // dynamicSortingComponent = GetComponent<DynamicSortingComponent>();
         depthSortingManager = FindObjectOfType<IsometricDepthSorting>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (gridManager == null)
-        {
-            Debug.LogError("GridManager not found in the scene!");
-        }
-
-    
 
         if (depthSortingManager == null)
         {
@@ -65,9 +51,6 @@ public class PlayerController : MonoBehaviour
     {
         HandleMovement();
         HandleMouseClickMovement();
-        UpdatePlayerGridPosition(transform.position);
-
-        // Sorting updates now controlled through movement state, no need for constant checks here
     }
 
     private void HandleMovement()
@@ -80,7 +63,6 @@ public class PlayerController : MonoBehaviour
             lastMoveDirection = moveDirection;
             UpdateWalkDirection(moveDirection);
             FlipSprite(moveDirection);
-          //  dynamicSortingComponent.UpdateSortingOrder();  // Sorting only updated while moving
             depthSortingManager.SortSpritesByDepthAndY();  // Update sorting order for the player
         }
         else
@@ -103,7 +85,6 @@ public class PlayerController : MonoBehaviour
                 lastMoveDirection = moveDirection;
                 UpdateWalkDirection(moveDirection);
                 FlipSprite(moveDirection);
-             //   dynamicSortingComponent.UpdateSortingOrder();  // Sorting updated when moving to click
                 depthSortingManager.SortSpritesByDepthAndY();  // Update sorting order for the player
             }
 
@@ -120,7 +101,6 @@ public class PlayerController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
         if (moveInput.magnitude > 0)
         {
-           // dynamicSortingComponent.UpdateSortingOrder();  // Trigger sorting when movement starts
             depthSortingManager.SortSpritesByDepthAndY();  // Update sorting order for the player
         }
     }
@@ -136,18 +116,7 @@ public class PlayerController : MonoBehaviour
         Vector3 mouseWorldPosition = GetWorldPositionFromMouse();
         targetPosition = mouseWorldPosition;
         isMovingToClick = true;
-       // dynamicSortingComponent.UpdateSortingOrder();  // Trigger sorting when clicking to move
         depthSortingManager.SortSpritesByDepthAndY();  // Update sorting order for the player
-    }
-
-    private void UpdatePlayerGridPosition(Vector3 playerWorldPosition)
-    {
-        Vector2Int newGridPosition = gridManager.ConvertWorldToGrid(playerWorldPosition);
-
-        if (newGridPosition != playerGridPosition)
-        {
-            playerGridPosition = newGridPosition;
-        }
     }
 
     private Vector3 GetWorldPositionFromMouse()

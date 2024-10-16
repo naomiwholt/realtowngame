@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
@@ -24,6 +25,8 @@ public class CameraMovement : MonoBehaviour
         cameraInputActions.Camera.Enable();
         cameraInputActions.Camera.Zoom.performed += OnZoom;
         cameraInputActions.Camera.Zoom.canceled += OnZoom;
+
+
     }
 
     void OnDisable()
@@ -31,13 +34,16 @@ public class CameraMovement : MonoBehaviour
         cameraInputActions.Camera.Zoom.performed -= OnZoom;
         cameraInputActions.Camera.Zoom.canceled -= OnZoom;
         cameraInputActions.Camera.Disable();
+
+        // Unsubscribe from events
+
+      
     }
 
     void LateUpdate()
     {
         if (target != null)
         {
-            // Adjust to track the player's position but keep the camera in perspective
             Vector3 desiredPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
             transform.position = smoothedPosition;
@@ -45,7 +51,6 @@ public class CameraMovement : MonoBehaviour
 
         HandleZoom();
     }
-
 
     private void HandleZoom()
     {
@@ -60,5 +65,10 @@ public class CameraMovement : MonoBehaviour
     {
         zoomInput = context.ReadValue<float>();
     }
+
+
+ 
 }
+
+
 

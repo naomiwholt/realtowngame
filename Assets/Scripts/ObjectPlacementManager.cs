@@ -26,10 +26,19 @@ public class ObjectPlacementManager : MonoBehaviour
         // Mark tiles as occupied for pre-existing objects in the scene
         MarkPreExistingObjects();
         // After marking pre-existing objects, update their sorting order
-        foreach (GameObject obj in preExistingObjects) // put this in function  above later
+        if (preExistingObjects != null && preExistingObjects.Count > 0)
         {
-            UpdateSortingOrder(obj);
+            foreach (GameObject obj in preExistingObjects)
+            {
+                UpdateSortingOrder(obj);
+            }
         }
+        else
+        {
+            Debug.Log("No objects found in the list, skipping UpdateSortingOrder.");
+        }
+
+
 
     }
 

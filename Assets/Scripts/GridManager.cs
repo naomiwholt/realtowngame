@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -7,40 +5,66 @@ public class GridManager : MonoBehaviour
     public static GridManager Instance { get; private set; }
     private Grid grid;  // Unity's Grid component
 
-    [Header("Grid Settings")]
-    public int gridWidth = 200;
-    public int gridHeight = 200;
-
-    public bool buildMode = false;  // Toggle build mode
+    private GameObject player;  // Reference to the player
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-          //  DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
 
-        grid = GetComponent<Grid>();   // Get the Unity Grid component
+        grid = GetComponent<Grid>();  // Get the Unity Grid component
 
+        if (grid == null)
+        {
+            Debug.LogError("Grid component not found!");
+        }
     }
 
-    public Vector3 ConvertGridToWorld(Vector2Int gridPosition)
+    private void Start()
     {
-        return grid.CellToWorld(new Vector3Int(gridPosition.x, gridPosition.y, 0));
+        // Find the player object (assign this dynamically or use a tag to locate the player)
+        player = GameObject.FindWithTag("Player");
+
+        if (player == null)
+        {
+            Debug.LogError("Player object not found in the scene!");
+        }
     }
 
-    // Convert world position to grid position
+    private void Update()
+    {
+        // Update the player's grid position every frame
+        if (player != null && grid != null)
+        {
+            UpdatePlayerGridPosition(player.transform.position);
+        }
+    }
+
+    // Convert world position to grid position and update
+    public void UpdatePlayerGridPosition(Vector3 playerWorldPosition)
+    {
+        Vector2Int playerGridPosition = ConvertWorldToGrid(playerWorldPosition);
+        Debug.Log("Player grid position: " + playerGridPosition);
+    }
+
     public Vector2Int ConvertWorldToGrid(Vector3 worldPosition)
     {
+        if (grid == null)
+        {
+            Debug.LogWarning("Grid component is missing or has been destroyed.");
+            return Vector2Int.zero;  // Handle the case where grid is missing
+        }
+
         Vector3Int cellPosition = grid.WorldToCell(worldPosition);
         return new Vector2Int(cellPosition.x, cellPosition.y);
     }
-
-  
 }
+
+
 

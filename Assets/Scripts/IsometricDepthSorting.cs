@@ -3,12 +3,47 @@ using UnityEngine;
 
 public class IsometricDepthSorting : MonoBehaviour
 {
- public List<SpriteRenderer> spritesToSort;   // List of objects to be sorted (both dynamic and nearby static)
-    public Transform cameraTransform;            // The camera or player's forward direction for depth
+    public List<SpriteRenderer> spritesToSort = new List<SpriteRenderer>();  // List of objects to be sorted
+    public Transform cameraTransform;  // The camera or player's forward direction for depth
+
+    // Call this function explicitly to find and add all sprites in the scene
+
+    private void Start()
+    {
+        if (cameraTransform == null)
+        {
+            Camera mainCamera = Camera.main;  // Find the main camera
+            if (mainCamera != null)
+            {
+                cameraTransform = mainCamera.transform;
+                Debug.Log("CameraTransform automatically assigned to the Main Camera.");
+            }
+            else
+            {
+                Debug.LogError("No camera assigned and no Main Camera found.");
+            }
+        }
+        FindAndAddAllSprites();
+    }
+    public void FindAndAddAllSprites()
+    {
+        // Clear the current list to avoid duplicates
+        spritesToSort.Clear();
+
+        // Find all SpriteRenderers in the scene
+        SpriteRenderer[] allSprites = FindObjectsOfType<SpriteRenderer>();
+
+        foreach (SpriteRenderer sprite in allSprites)
+        {
+            AddToSortingList(sprite);
+        }
+
+        Debug.Log($"{allSprites.Length} sprites added to sorting list.");
+    }
 
     void Update()
     {
-        SortSpritesByDepthAndY();
+        SortSpritesByDepthAndY();  // Continue sorting every frame
     }
 
     // Sorts sprites by depth (dot product) and Y-position
@@ -38,21 +73,21 @@ public class IsometricDepthSorting : MonoBehaviour
         }
     }
 
-    // Add a static object to the sorting list
-    public void AddToSortingList(SpriteRenderer staticObject)
+    // Add a static object to the sorting list, ensuring no duplicates
+    public void AddToSortingList(SpriteRenderer sprite)
     {
-        if (!spritesToSort.Contains(staticObject))
+        if (sprite != null && !spritesToSort.Contains(sprite))
         {
-            spritesToSort.Add(staticObject);
+            spritesToSort.Add(sprite);
         }
     }
 
     // Remove a static object from the sorting list
-    public void RemoveFromSortingList(SpriteRenderer staticObject)
+    public void RemoveFromSortingList(SpriteRenderer sprite)
     {
-        if (spritesToSort.Contains(staticObject))
+        if (spritesToSort.Contains(sprite))
         {
-            spritesToSort.Remove(staticObject);
+            spritesToSort.Remove(sprite);
         }
     }
 }
