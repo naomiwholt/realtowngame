@@ -60,22 +60,16 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.49f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CameraMovement.cs" />
-    <Compile Include="Assets\Scripts\MenuManager.cs" />
-    <Compile Include="Assets\Scripts\GridManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\Managers\ObjectPlacementManager.cs" />
+    <Compile Include="Assets\Scripts\Environment\IsometricDepthSorting.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Managers\SceneController.cs" />
-    <Compile Include="Assets\Scripts\InteractableComputerScripts\MiniGameManager.cs" />
-    <Compile Include="Assets\Scripts\InteractableComputerScripts\PlatformerGame\PlatformerPlayer.cs" />
-    <Compile Include="Assets\Scripts\InteractableComputerScripts\ComputerManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GridManager.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Managers\EssentialsManager.cs" />
-    <Compile Include="Assets\Scripts\InteractableComputerScripts\EmailSystem.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
-    <Compile Include="Assets\Scripts\IsometricDepthSorting.cs" />
-    <Compile Include="Assets\Scripts\ObjectPlacementManager.cs" />
-    <Compile Include="Assets\Scripts\InteractableComputerScripts\PlatformerGame\PlatformerGameManager.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\CameraInputActions.cs" />
   </ItemGroup>
   <ItemGroup>

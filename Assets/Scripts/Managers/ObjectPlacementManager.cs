@@ -18,28 +18,23 @@ public class ObjectPlacementManager : MonoBehaviour
     public Tilemap tilemap;  // Reference to the Tilemap
     private HashSet<Vector3Int> occupiedtiles = new HashSet<Vector3Int>();  // Keep track of occupied cells
 
+    public IsometricDepthSorting sortingManager;
+
+
     private void Start()
     {
-        tilemap = GetComponent<Tilemap>();
-        grid = GetComponent<Grid>();
-
         // Mark tiles as occupied for pre-existing objects in the scene
         MarkPreExistingObjects();
-        // After marking pre-existing objects, update their sorting order
-        if (preExistingObjects != null && preExistingObjects.Count > 0)
+
+        // After marking, update the sorting order for the pre-existing objects
+        if (sortingManager != null && preExistingObjects != null)
         {
-            foreach (GameObject obj in preExistingObjects)
-            {
-                UpdateSortingOrder(obj);
-            }
+            sortingManager.UpdateSortingOrders(preExistingObjects);
         }
         else
         {
-            Debug.Log("No objects found in the list, skipping UpdateSortingOrder.");
+            Debug.Log("SortingManager or preExistingObjects not properly assigned.");
         }
-
-
-
     }
 
     // Step 1: Loop through each object and find its child colliders' bounds

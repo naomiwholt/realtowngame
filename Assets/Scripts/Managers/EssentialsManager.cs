@@ -43,9 +43,11 @@ public class EssentialsManager : MonoBehaviour
                 Player.SetActive(false);
                 break;
             case GameManager.GameState.Playing:
-                gridManager.SetActive(true);
-                sortingManager.SetActive(true);
                 Player.SetActive(true);
+                sortingManager.SetActive(true);
+                gridManager.SetActive(true);
+               
+                
                 break;
             case GameManager.GameState.Paused:
                 // Optionally handle pause logic

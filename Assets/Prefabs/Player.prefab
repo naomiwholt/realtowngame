@@ -129,6 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  moveInput: {x: 0, y: 0}
+  isMovingToClick: 0
 --- !u!95 &3871912055482854698
 Animator:
   serializedVersion: 5

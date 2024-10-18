@@ -5,7 +5,7 @@ public class GridManager : MonoBehaviour
     public static GridManager Instance { get; private set; }
     private Grid grid;  // Unity's Grid component
 
-    private GameObject player;  // Reference to the player
+    public GameObject player;  // Reference to the player
 
     private void Awake()
     {
@@ -26,16 +26,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        // Find the player object (assign this dynamically or use a tag to locate the player)
-        player = GameObject.FindWithTag("Player");
 
-        if (player == null)
-        {
-            Debug.LogError("Player object not found in the scene!");
-        }
-    }
 
     private void Update()
     {
@@ -50,7 +41,7 @@ public class GridManager : MonoBehaviour
     public void UpdatePlayerGridPosition(Vector3 playerWorldPosition)
     {
         Vector2Int playerGridPosition = ConvertWorldToGrid(playerWorldPosition);
-        Debug.Log("Player grid position: " + playerGridPosition);
+      //  Debug.Log("Player grid position: " + playerGridPosition);
     }
 
     public Vector2Int ConvertWorldToGrid(Vector3 worldPosition)

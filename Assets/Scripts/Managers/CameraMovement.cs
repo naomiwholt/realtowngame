@@ -1,14 +1,14 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Transform target;
-    public float smoothSpeed = 0.125f;
-    public float zoomSpeed = 1f;
-    public float minZoom = 5f;
-    public float maxZoom = 15f;
+    public Transform target;  // The target to follow (usually the player)
+    public float smoothSpeed = 0.125f;  // How smooth the camera movement should be
+    public float zoomSpeed = 1f;  // Speed of zooming in/out
+    public float minZoom = 5f;  // Minimum zoom level
+    public float maxZoom = 15f;  // Maximum zoom level
+    public float initialZoom = 10f;  // Initial zoom level
 
     private Camera mainCamera;
     private CameraInputActions cameraInputActions;
@@ -18,6 +18,9 @@ public class CameraMovement : MonoBehaviour
     {
         mainCamera = Camera.main;
         cameraInputActions = new CameraInputActions();
+
+        // Set the initial orthographic size
+        mainCamera.orthographicSize = initialZoom;
     }
 
     void OnEnable()
@@ -25,8 +28,6 @@ public class CameraMovement : MonoBehaviour
         cameraInputActions.Camera.Enable();
         cameraInputActions.Camera.Zoom.performed += OnZoom;
         cameraInputActions.Camera.Zoom.canceled += OnZoom;
-
-
     }
 
     void OnDisable()
@@ -34,17 +35,14 @@ public class CameraMovement : MonoBehaviour
         cameraInputActions.Camera.Zoom.performed -= OnZoom;
         cameraInputActions.Camera.Zoom.canceled -= OnZoom;
         cameraInputActions.Camera.Disable();
-
-        // Unsubscribe from events
-
-      
     }
 
     void LateUpdate()
     {
         if (target != null)
         {
-            Vector3 desiredPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
+            // Fix the Z-coordinate to -10f to ensure correct depth
+            Vector3 desiredPosition = new Vector3(target.position.x, target.position.y, -10f);
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
             transform.position = smoothedPosition;
         }
@@ -65,9 +63,6 @@ public class CameraMovement : MonoBehaviour
     {
         zoomInput = context.ReadValue<float>();
     }
-
-
- 
 }
 
 

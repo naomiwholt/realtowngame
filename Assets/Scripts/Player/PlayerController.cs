@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public Vector2 moveInput;
     public bool isMovingToClick = false;
+    public float ovalWidth = 1.5f;  // Width of the oval (adjustable in the Inspector)
+    public float ovalHeight = 0.75f;  // Height of the oval (adjustable in the Inspector)
+    public float ovalYOffset = 0f;    // Adjustable Y-offset for the oval in the Inspector
+    public bool showDebug = true;      // Toggle for visualizing CircleCast in the Inspector
 
     private Vector3 targetPosition;
     private Animator animator;
@@ -52,53 +56,116 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleMouseClickMovement();
     }
-
     private void HandleMovement()
     {
         Vector3 moveDirection = new Vector3(moveInput.x, moveInput.y, 0).normalized;
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        float moveStep = moveSpeed * Time.deltaTime;
 
-        if (moveDirection.magnitude > 0)
+        // Adjust the center position based on Y offset
+        Vector3 ovalCenter = new Vector3(transform.position.x, transform.position.y + ovalYOffset, 0);
+
+        // Debug to visualize the oval bounds if debugging is enabled
+        if (showDebug)
+        {
+            Debug.DrawRay(ovalCenter, moveDirection * moveStep, Color.red);  // Show movement direction
+            DrawOval(ovalCenter, ovalWidth, ovalHeight, Color.green);        // Draw the collision detection oval
+        }
+
+        // Perform an approximation of an OvalCast by scaling the Y-dimension
+        RaycastHit2D hit = Physics2D.CircleCast(ovalCenter, ovalWidth / 2, moveDirection, moveStep, LayerMask.GetMask("InteractableObject"));
+
+        if (hit.collider == null)
+        {
+            // No collision detected, move the player
+            transform.localPosition += moveDirection * moveStep;
+            lastMoveDirection = moveDirection;
+
+            // Handle animations
+            UpdateWalkDirection(moveDirection);
+            FlipSprite(moveDirection);
+        }
+        else if (hit.collider.CompareTag("Obstacle"))
+        {
+            // Collision detected, stop movement
+            Debug.Log("Collision detected with: " + hit.collider.gameObject.name);
+
+            // Optional: Draw the hit point for debugging
+            if (showDebug)
+            {
+                Debug.DrawLine(ovalCenter, hit.point, Color.blue);
+            }
+        }
+    }
+
+    // Function to draw a circle for the CircleCast visualization
+    private void DrawOval(Vector3 center, float width, float height, Color color)
+    {
+        int segments = 20;  // Adjust the number of segments for smoothness
+        float angleStep = 360f / segments;
+        Vector3 prevPoint = center + new Vector3(Mathf.Cos(0) * width / 2, Mathf.Sin(0) * height / 2, 0);
+
+        for (int i = 1; i <= segments; i++)
+        {
+            float angle = i * angleStep * Mathf.Deg2Rad;
+            Vector3 nextPoint = center + new Vector3(Mathf.Cos(angle) * width / 2, Mathf.Sin(angle) * height / 2, 0);
+            Debug.DrawLine(prevPoint, nextPoint, color);
+            prevPoint = nextPoint;
+        }
+    }
+
+
+
+
+
+
+
+    private void HandleMouseClickMovement()
+{
+    if (isMovingToClick)
+    {
+        // Calculate the direction towards the target position
+        Vector3 moveDirection = (targetPosition - transform.position).normalized;
+
+        // Calculate the movement step based on speed and time
+        float moveStep = moveSpeed * Time.deltaTime;
+
+        // Log to check if mouse movement is being processed
+       // Debug.Log("Moving towards: " + targetPosition + ", Move Step: " + moveStep);
+
+        // Cast a ray to detect potential obstacles (if needed), otherwise move the player
+        // Assuming no raycast obstacle for simplicity in this example
+        transform.localPosition += moveDirection * moveStep;
+
+        // Log the new local position after movement
+      //  Debug.Log("New Position after mouse click (local): " + transform.localPosition);
+
+        // Update animations and sorting if the player is moving
+        if (moveDirection.magnitude > 0.1f)
         {
             lastMoveDirection = moveDirection;
             UpdateWalkDirection(moveDirection);
             FlipSprite(moveDirection);
             depthSortingManager.SortSpritesByDepthAndY();  // Update sorting order for the player
         }
-        else
+
+        // Stop moving if we are close to the target position
+        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
+            isMovingToClick = false;
             UpdateIdleDirection(lastMoveDirection);
         }
-
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
+}
 
-    private void HandleMouseClickMovement()
-    {
-        if (isMovingToClick)
-        {
-            Vector3 moveDirection = (targetPosition - transform.position).normalized;
-            transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
-            if (moveDirection.magnitude > 0.1)
-            {
-                lastMoveDirection = moveDirection;
-                UpdateWalkDirection(moveDirection);
-                FlipSprite(moveDirection);
-                depthSortingManager.SortSpritesByDepthAndY();  // Update sorting order for the player
-            }
 
-            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
-            {
-                isMovingToClick = false;
-                UpdateIdleDirection(lastMoveDirection);
-            }
-        }
-    }
+
+
 
     private void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+        //Debug.Log("Move Input: " + moveInput);  // Add this to check if input is received correctly
         if (moveInput.magnitude > 0)
         {
             depthSortingManager.SortSpritesByDepthAndY();  // Update sorting order for the player
@@ -198,9 +265,9 @@ public class PlayerController : MonoBehaviour
     // Trigger logic to detect nearby static objects
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("trigger box triggered");
         // Get the parent object that has the SpriteRenderer component
         SpriteRenderer staticObject = other.GetComponentInParent<SpriteRenderer>();
-      //  Debug.Log("entering " + other.gameObject.name);
         if (staticObject != null && depthSortingManager != null)
         {
             depthSortingManager.AddToSortingList(staticObject);
@@ -211,13 +278,12 @@ public class PlayerController : MonoBehaviour
     {
         // Get the parent object that has the SpriteRenderer component
         SpriteRenderer staticObject = other.GetComponentInParent<SpriteRenderer>();
-
-      //.  Debug.Log("exiting " + other.gameObject.name);
         if (staticObject != null && depthSortingManager != null)
         {
             depthSortingManager.RemoveFromSortingList(staticObject);
         }
     }
+
 }
 
 

@@ -5,14 +5,13 @@ public class IsometricDepthSorting : MonoBehaviour
 {
     public List<SpriteRenderer> spritesToSort = new List<SpriteRenderer>();  // List of objects to be sorted
     public Transform cameraTransform;  // The camera or player's forward direction for depth
-
-    // Call this function explicitly to find and add all sprites in the scene
+    public SpriteRenderer player_spriterenderer;
 
     private void Start()
     {
         if (cameraTransform == null)
         {
-            Camera mainCamera = Camera.main;  // Find the main camera
+            Camera mainCamera = Camera.main;
             if (mainCamera != null)
             {
                 cameraTransform = mainCamera.transform;
@@ -23,14 +22,27 @@ public class IsometricDepthSorting : MonoBehaviour
                 Debug.LogError("No camera assigned and no Main Camera found.");
             }
         }
+
+        if (player_spriterenderer != null)
+        {
+            AddToSortingList(player_spriterenderer);
+        }
+        else
+        {
+            Debug.LogError("Player SpriteRenderer not assigned!");
+        }
+
         FindAndAddAllSprites();
     }
+
+    void Update()
+    {
+        SortSpritesByDepthAndY();  // Continue sorting every frame
+    }
+
     public void FindAndAddAllSprites()
     {
-        // Clear the current list to avoid duplicates
         spritesToSort.Clear();
-
-        // Find all SpriteRenderers in the scene
         SpriteRenderer[] allSprites = FindObjectsOfType<SpriteRenderer>();
 
         foreach (SpriteRenderer sprite in allSprites)
@@ -41,17 +53,10 @@ public class IsometricDepthSorting : MonoBehaviour
         Debug.Log($"{allSprites.Length} sprites added to sorting list.");
     }
 
-    void Update()
-    {
-        SortSpritesByDepthAndY();  // Continue sorting every frame
-    }
-
-    // Sorts sprites by depth (dot product) and Y-position
     public void SortSpritesByDepthAndY()
     {
         Vector2 depthDirection = new Vector2(cameraTransform.forward.x, cameraTransform.forward.y).normalized;
 
-        // Sort sprites using a combination of Y-position and depth
         spritesToSort.Sort((a, b) =>
         {
             int yComparison = b.transform.position.y.CompareTo(a.transform.position.y);
@@ -66,14 +71,12 @@ public class IsometricDepthSorting : MonoBehaviour
             return dotB.CompareTo(dotA);  // Inverted depth sorting if needed
         });
 
-        // Apply sorting order to SpriteRenderers
         for (int i = 0; i < spritesToSort.Count; i++)
         {
             spritesToSort[i].sortingOrder = i;
         }
     }
 
-    // Add a static object to the sorting list, ensuring no duplicates
     public void AddToSortingList(SpriteRenderer sprite)
     {
         if (sprite != null && !spritesToSort.Contains(sprite))
@@ -82,12 +85,28 @@ public class IsometricDepthSorting : MonoBehaviour
         }
     }
 
-    // Remove a static object from the sorting list
     public void RemoveFromSortingList(SpriteRenderer sprite)
     {
         if (spritesToSort.Contains(sprite))
         {
             spritesToSort.Remove(sprite);
+        
         }
     }
+
+    // New method to allow external scripts to request sorting updates
+    public void UpdateSortingOrders(List<GameObject> objectsToSort)
+    {
+        foreach (GameObject obj in objectsToSort)
+        {
+            SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                AddToSortingList(spriteRenderer);
+            }
+        }
+
+        SortSpritesByDepthAndY();  // Sort the new list including the added objects
+    }
 }
+

@@ -19,6 +19,8 @@ public class SceneController : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // Initialize the scene map during Awake
             InitializeSceneMap();
         }
         else
@@ -40,6 +42,9 @@ public class SceneController : MonoBehaviour
                 sceneNameMap.Add(sceneName, sceneName);  // Add to map for future reference
             }
         }
+
+        // Log to check if scene names are being added
+        Debug.Log("Scene names initialized: " + string.Join(", ", sceneNameMap.Keys));
     }
 
     // Function to load a scene by name
@@ -96,5 +101,6 @@ public class SceneController : MonoBehaviour
         LoadScene("MainMenu");  // Adjust the main menu scene name if necessary
     }
 }
+
 
 
