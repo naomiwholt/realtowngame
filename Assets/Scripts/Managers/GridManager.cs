@@ -28,21 +28,9 @@ public class GridManager : MonoBehaviour
 
 
 
-    private void Update()
-    {
-        // Update the player's grid position every frame
-        if (player != null && grid != null)
-        {
-            UpdatePlayerGridPosition(player.transform.position);
-        }
-    }
 
     // Convert world position to grid position and update
-    public void UpdatePlayerGridPosition(Vector3 playerWorldPosition)
-    {
-        Vector2Int playerGridPosition = ConvertWorldToGrid(playerWorldPosition);
-      //  Debug.Log("Player grid position: " + playerGridPosition);
-    }
+ 
 
     public Vector2Int ConvertWorldToGrid(Vector3 worldPosition)
     {

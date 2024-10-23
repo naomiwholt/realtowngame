@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject gameOverUI;
     public GameObject hudUI;
+    public GameObject loadingScreenUI;
 
     private void Awake()
     {
@@ -21,26 +22,30 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        // Subscribe to the GameManager's state change event
-        GameManager.OnGameStateChanged += UpdateUI;
+        // Update the UI based on the current game state in every frame
+        UpdateUI(GameManager._instance.currentState);
     }
 
-    private void OnDisable()
+
+    public void LoadingSceneButtonPressed(string scenename)
     {
-        // Unsubscribe to avoid memory leaks
-        GameManager.OnGameStateChanged -= UpdateUI;
+        // Button calls this to start the game
+        GameManager._instance.LoadGame(scenename);
     }
 
-    // Update the UI based on the current game state
+    // The switch statement to handle UI updates
     public void UpdateUI(GameManager.GameState gameState)
     {
+        // Deactivate all panels first
         mainMenuUI.SetActive(false);
         pauseMenuUI.SetActive(false);
         gameOverUI.SetActive(false);
         hudUI.SetActive(false);
+        loadingScreenUI.SetActive(false);
 
+        // Switch to activate the appropriate UI based on the current state
         switch (gameState)
         {
             case GameManager.GameState.MainMenu:
@@ -55,32 +60,21 @@ public class UIManager : MonoBehaviour
             case GameManager.GameState.GameOver:
                 gameOverUI.SetActive(true);
                 break;
+            case GameManager.GameState.Loading:
+                loadingScreenUI.SetActive(true);
+                break;
         }
     }
 
-    // Resume the game from pause
-    public void OnResumeButton()
+    // Optionally, you can still use these methods for manual control
+    public void ShowLoadingScreen()
     {
-        GameManager.Instance.TogglePause();
+        loadingScreenUI.SetActive(true);
     }
 
-    // Return to Main Menu
-    public void OnMainMenuButton()
+    public void HideLoadingScreen()
     {
-        SceneController.Instance.LoadMainMenu();  // Use SceneController to load the Main Menu
-    }
-
-    // Start the game
-    public void OnStartGameButton()
-    {
-        GameManager.Instance.UpdateGameState(GameManager.GameState.Playing);  // Switch to the Playing state
-    }
-
-    // Quit the game
-    public void OnQuitButton()
-    {
-        Application.Quit();
+        loadingScreenUI.SetActive(false);
     }
 }
-
 

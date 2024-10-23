@@ -1,22 +1,23 @@
 using System;
 using UnityEngine;
+using System.Collections;
 
+// GameManager.cs
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static GameManager _instance { get; private set; }
 
-    public enum GameState { MainMenu, Playing, Paused, GameOver }
+    public enum GameState { MainMenu, Loading, Playing, Paused, GameOver }
     public GameState currentState;
 
-    // Event to notify listeners of game state changes
     public static event Action<GameState> OnGameStateChanged;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (_instance == null)
         {
-            Instance = this;
-
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -32,53 +33,42 @@ public class GameManager : MonoBehaviour
     public void UpdateGameState(GameState newState)
     {
         currentState = newState;
+        OnGameStateChanged?.Invoke(newState);  // Notify all listeners of the state change
 
-        // Notify all listeners of the state change
-        OnGameStateChanged?.Invoke(newState);
-
-        switch (newState)
+        switch(newState)
         {
-            case GameState.MainMenu:
-                UIManager.Instance.UpdateUI(GameState.MainMenu);
-                break;
-            case GameState.Playing:
-                UIManager.Instance.UpdateUI(GameState.Playing);
-                SceneController.Instance.LoadScene("ApartmentDemo");
-                break;
-            case GameState.Paused:
-                UIManager.Instance.UpdateUI(GameState.Paused);
-                Time.timeScale = 0f;
-                break;
-            case GameState.GameOver:
-                UIManager.Instance.UpdateUI(GameState.GameOver);
-                break;
-        }
-    }
+            case GameState.MainMenu:              
+            break;
 
-    public void StartGame()
-    {
-        UpdateGameState(GameState.Playing);
-    }
-
-    public void TogglePause()
-    {
-        if (currentState == GameState.Playing)
-        {
-            UpdateGameState(GameState.Paused);
-        }
-        else if (currentState == GameState.Paused)
-        {
-            UpdateGameState(GameState.Playing);
-            Time.timeScale = 1f;
-        }
-    }
-
+            case GameState.Loading:
+         
     
+                break;
 
-    public void GameOver()
-    {
-        UpdateGameState(GameState.GameOver);
+            case GameState.Playing:                      
+            break;
+
+            case GameState.Paused:           
+            Time.timeScale = 0f;
+            break;
+
+            case GameState.GameOver:    
+            break;
+        }
     }
-}
 
+    public void LoadGame(string scenename)
+    {
+        UpdateGameState(GameState.Loading);
+        SceneController._instance.LoadScene(scenename);
+    }
+
+   
+
+    public void StartGame() // should maybe put a scene ready bool or something here later? 
+    {
+        UpdateGameState(GameState.Playing);    
+    }
+  
+}
 

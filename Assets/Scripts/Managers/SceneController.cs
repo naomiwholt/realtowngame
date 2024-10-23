@@ -2,26 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;  // Needed for SceneAsset
+using UnityEngine.Events;
 
+// SceneController.cs
 public class SceneController : MonoBehaviour
 {
-    public static SceneController Instance { get; private set; }
+    public static SceneController _instance { get; private set; }
 
-    [Header("Scene References (Drag & Drop)")]
-    public List<SceneAsset> sceneAssets;  // Drag & drop scenes from assets folder here
-
-    private Dictionary<string, string> sceneNameMap = new Dictionary<string, string>();  // Stores scene names for reference
+    public bool SceneLoadComplete;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (_instance == null)
         {
-            Instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
-
-            // Initialize the scene map during Awake
-            InitializeSceneMap();
         }
         else
         {
@@ -29,78 +24,61 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    private void InitializeSceneMap()
+    private void OnEnable()
     {
-        // Populate the sceneNameMap with scene names from the list of SceneAssets
-        sceneNameMap.Clear();
-
-        foreach (SceneAsset sceneAsset in sceneAssets)
-        {
-            if (sceneAsset != null)
-            {
-                string sceneName = sceneAsset.name;  // Get the scene name from SceneAsset
-                sceneNameMap.Add(sceneName, sceneName);  // Add to map for future reference
-            }
-        }
-
-        // Log to check if scene names are being added
-        Debug.Log("Scene names initialized: " + string.Join(", ", sceneNameMap.Keys));
+        GameManager.OnGameStateChanged += UpdateForGameState;
     }
 
-    // Function to load a scene by name
+    private void OnDisable()
+    {
+        GameManager.OnGameStateChanged -= UpdateForGameState;
+    }
+    private void UpdateForGameState(GameManager.GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameManager.GameState.MainMenu:
+         
+                break;
+
+            case GameManager.GameState.Loading:
+        
+                break;
+
+            case GameManager.GameState.Playing:
+         
+                break;
+
+            case GameManager.GameState.Paused:
+                // Handle paused state, e.g., freezing player movement
+                break;
+
+            case GameManager.GameState.GameOver:
+                // Handle game over state if needed
+                break;
+        }
+    }
+
     public void LoadScene(string sceneName)
     {
-        if (sceneNameMap.ContainsKey(sceneName))
-        {
-            StartCoroutine(LoadSceneAsync(sceneName));
-        }
-        else
-        {
-            Debug.LogError($"Scene '{sceneName}' not found in the list of scene references.");
-        }
+        StartCoroutine(LoadSceneAsync(sceneName));
     }
 
-    // Function to load a scene asynchronously, useful for large scenes
     private IEnumerator LoadSceneAsync(string sceneName)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
         while (!asyncLoad.isDone)
         {
-            // Optionally display a loading progress bar
             yield return null;
         }
-    }
 
-    // Function to reload the current scene
-    public void ReloadScene()
-    {
-        string currentScene = SceneManager.GetActiveScene().name;
-        LoadScene(currentScene);
-    }
-
-    // Function to load the next scene (for linear level progression)
-    public void LoadNextScene()
-    {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
-
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            LoadScene(SceneManager.GetSceneByBuildIndex(nextSceneIndex).name);
-        }
-        else
-        {
-            Debug.LogWarning("No more scenes to load!");
-        }
-    }
-
-    // Function to return to the main menu
-    public void LoadMainMenu()
-    {
-        LoadScene("MainMenu");  // Adjust the main menu scene name if necessary
+        SceneLoadComplete = true;
+        Debug.Log(sceneName + " is loaded.");
+        GameManager._instance.StartGame();
     }
 }
+
 
 
 

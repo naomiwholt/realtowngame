@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class ObjectPlacementManager : MonoBehaviour
 {
-
-    private Grid grid;  // Reference to the Grid component
 
     // Dictionary to store occupied tiles (key: grid position, value: true if occupied)
     private Dictionary<Vector3Int, bool> occupiedTiles = new Dictionary<Vector3Int, bool>();
@@ -21,9 +20,19 @@ public class ObjectPlacementManager : MonoBehaviour
     public IsometricDepthSorting sortingManager;
 
 
-    private void Start()
+ 
+
+    private void OnEnable()
+    {
+        Initialise();
+
+    }
+
+   
+    private void Initialise() 
     {
         // Mark tiles as occupied for pre-existing objects in the scene
+        CollectFurnitureObjects();
         MarkPreExistingObjects();
 
         // After marking, update the sorting order for the pre-existing objects
@@ -36,6 +45,39 @@ public class ObjectPlacementManager : MonoBehaviour
             Debug.Log("SortingManager or preExistingObjects not properly assigned.");
         }
     }
+
+
+    private void CollectFurnitureObjects()
+    {
+        // Ensure the Apartment scene is loaded
+        Scene apartmentScene = SceneManager.GetSceneByName("ApartmentDemo");
+        if (apartmentScene.isLoaded)
+        {
+            // Search for the "furniture" GameObject within the Apartment scene
+            foreach (GameObject obj in apartmentScene.GetRootGameObjects())
+            {
+                GameObject furnitureParent = obj.transform.Find("furniture")?.gameObject;
+                if (furnitureParent != null)
+                {
+                    // Add each child of "furniture" to the preExistingObjects list
+                    foreach (Transform child in furnitureParent.transform)
+                    {
+                        if (child.gameObject != null)
+                        {
+                            preExistingObjects.Add(child.gameObject);
+                        }
+                    }
+                    return;  // Exit after finding the furniture object
+                }
+            }
+            Debug.LogWarning("No GameObject named 'furniture' found in the ApartmentDemo scene.");
+        }
+        else
+        {
+            Debug.LogError("ApartmentDemo scene is not loaded.");
+        }
+    }
+
 
     // Step 1: Loop through each object and find its child colliders' bounds
     private void MarkPreExistingObjects()
