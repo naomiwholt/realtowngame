@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Managers\ObjectPlacementManager.cs" />
     <Compile Include="Assets\Scripts\Environment\IsometricDepthSorting.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\Managers\SceneController.cs" />
     <Compile Include="Assets\Scripts\Managers\GridManager.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />

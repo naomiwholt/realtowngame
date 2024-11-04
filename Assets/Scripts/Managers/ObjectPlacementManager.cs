@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ObjectPlacementManager : MonoBehaviour
 {
+    public static ObjectPlacementManager Instance { get; private set; }
 
     // Dictionary to store occupied tiles (key: grid position, value: true if occupied)
     private Dictionary<Vector3Int, bool> occupiedTiles = new Dictionary<Vector3Int, bool>();
@@ -20,61 +21,53 @@ public class ObjectPlacementManager : MonoBehaviour
     public IsometricDepthSorting sortingManager;
 
 
- 
+
 
     private void OnEnable()
     {
-        Initialise();
-
+        GameManager.OnGameStateChanged += HandleGameStateChanged;  // Subscribe to GameManager state change event
     }
 
-   
-    private void Initialise() 
+    private void OnDisable()
     {
-        // Mark tiles as occupied for pre-existing objects in the scene
+        GameManager.OnGameStateChanged -= HandleGameStateChanged;  // Unsubscribe to avoid memory leaks
+    }
+
+    private void HandleGameStateChanged(GameManager.GameState newState)
+    {
+        if (newState == GameManager.GameState.Playing)
+        {
+            Initialise();
+            Debug.Log("initialising object placement");
+        }
+    }
+
+    private void Initialise()
+    {
         CollectFurnitureObjects();
         MarkPreExistingObjects();
-
-        // After marking, update the sorting order for the pre-existing objects
-        if (sortingManager != null && preExistingObjects != null)
-        {
-            sortingManager.UpdateSortingOrders(preExistingObjects);
-        }
-        else
-        {
-            Debug.Log("SortingManager or preExistingObjects not properly assigned.");
-        }
+      
     }
 
 
     private void CollectFurnitureObjects()
     {
-        // Ensure the Apartment scene is loaded
-        Scene apartmentScene = SceneManager.GetSceneByName("ApartmentDemo");
-        if (apartmentScene.isLoaded)
+        preExistingObjects = new List<GameObject>();
+
+        // Find the "Furniture" parent object in the scene
+        GameObject furnitureParent = GameObject.Find("Furniture");
+        if (furnitureParent != null)
         {
-            // Search for the "furniture" GameObject within the Apartment scene
-            foreach (GameObject obj in apartmentScene.GetRootGameObjects())
+            Debug.Log("adding furniture to preexisting objects");
+            // Add each child of "Furniture" to the preExistingObjects list
+            foreach (Transform child in furnitureParent.transform)
             {
-                GameObject furnitureParent = obj.transform.Find("furniture")?.gameObject;
-                if (furnitureParent != null)
-                {
-                    // Add each child of "furniture" to the preExistingObjects list
-                    foreach (Transform child in furnitureParent.transform)
-                    {
-                        if (child.gameObject != null)
-                        {
-                            preExistingObjects.Add(child.gameObject);
-                        }
-                    }
-                    return;  // Exit after finding the furniture object
-                }
+                preExistingObjects.Add(child.gameObject);
             }
-            Debug.LogWarning("No GameObject named 'furniture' found in the ApartmentDemo scene.");
         }
         else
         {
-            Debug.LogError("ApartmentDemo scene is not loaded.");
+            Debug.LogWarning("No GameObject named 'Furniture' found in the scene.");
         }
     }
 
@@ -217,7 +210,7 @@ public class ObjectPlacementManager : MonoBehaviour
         if (spriteRenderer != null)
         {
             // Convert object's world position to grid position
-            Vector2Int gridPosition = GridManager.Instance.ConvertWorldToGrid(obj.transform.position);
+            Vector2Int gridPosition = EssentialsManager._instance.gridManager.ConvertWorldToGrid(obj.transform.position);
 
             // Use the Y-tile position to determine sorting order
             spriteRenderer.sortingOrder = Mathf.FloorToInt(-gridPosition.y * 10);

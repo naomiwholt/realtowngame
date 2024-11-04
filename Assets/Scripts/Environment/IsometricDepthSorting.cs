@@ -5,78 +5,67 @@ public class IsometricDepthSorting : MonoBehaviour
 {
     public List<SpriteRenderer> spritesToSort = new List<SpriteRenderer>();  // List of objects to be sorted
     public Transform cameraTransform;  // The camera or player's forward direction for depth
-    public SpriteRenderer player_spriterenderer;
 
-    private void Start()
+    private void OnEnable()
     {
-        if (cameraTransform == null)
-        {
-            Camera mainCamera = Camera.main;
-            if (mainCamera != null)
-            {
-                cameraTransform = mainCamera.transform;
-                Debug.Log("CameraTransform automatically assigned to the Main Camera.");
-            }
-            else
-            {
-                Debug.LogError("No camera assigned and no Main Camera found.");
-            }
-        }
-
-        if (player_spriterenderer != null)
-        {
-            AddToSortingList(player_spriterenderer);
-        }
-        else
-        {
-            Debug.LogError("Player SpriteRenderer not assigned!");
-        }
-
-        FindAndAddAllSprites();
+        GameManager.OnGameStateChanged += HandleGameStateChanged;  // Listen for game state changes
     }
 
-    void Update()
+    private void OnDisable()
     {
-        SortSpritesByDepthAndY();  // Continue sorting every frame
+        GameManager.OnGameStateChanged -= HandleGameStateChanged;  // Unsubscribe to prevent memory leaks
     }
 
-    public void FindAndAddAllSprites()
+    private void HandleGameStateChanged(GameManager.GameState newState)
+    {
+        if (newState == GameManager.GameState.Playing)
+        {
+            InitialiseSorting();
+        }
+    }
+
+    public void InitialiseSorting()
     {
         spritesToSort.Clear();
-        SpriteRenderer[] allSprites = FindObjectsOfType<SpriteRenderer>();
 
-        foreach (SpriteRenderer sprite in allSprites)
+        if (ObjectPlacementManager.Instance == null)
         {
-            AddToSortingList(sprite);
+            Debug.LogError("ObjectPlacementManager instance not found!");
+            return;
         }
 
-        Debug.Log($"{allSprites.Length} sprites added to sorting list.");
+        foreach (GameObject obj in ObjectPlacementManager.Instance.preExistingObjects)
+        {
+            SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spritesToSort.Add(spriteRenderer);
+            }
+        }
+
+        Debug.Log($"{spritesToSort.Count} sprites initialized for sorting.");
     }
 
-    public void SortSpritesByDepthAndY()
+    // Centralized sorting function for all sprites
+    void SortSprites()
     {
-        Vector2 depthDirection = new Vector2(cameraTransform.forward.x, cameraTransform.forward.y).normalized;
-
+        // Sort by Y position, then X for ties, with lower Y values appearing in front
         spritesToSort.Sort((a, b) =>
         {
-            int yComparison = b.transform.position.y.CompareTo(a.transform.position.y);
+            int yComparison = b.transform.position.y.CompareTo(a.transform.position.y); // Reverse Y comparison
             if (yComparison != 0) return yComparison;
 
-            Vector2 toA = new Vector2(a.transform.position.x, a.transform.position.y).normalized;
-            Vector2 toB = new Vector2(b.transform.position.x, b.transform.position.y).normalized;
-
-            float dotA = Vector2.Dot(depthDirection, toA);
-            float dotB = Vector2.Dot(depthDirection, toB);
-
-            return dotB.CompareTo(dotA);  // Inverted depth sorting if needed
+            return b.transform.position.x.CompareTo(a.transform.position.x); // Reverse X comparison if needed
         });
 
+        // Assign sorting orders, with 0 being the farthest back and increasing for closer objects
         for (int i = 0; i < spritesToSort.Count; i++)
         {
             spritesToSort[i].sortingOrder = i;
         }
     }
 
+    // Add a function to add sprites to the sorting list dynamically
     public void AddToSortingList(SpriteRenderer sprite)
     {
         if (sprite != null && !spritesToSort.Contains(sprite))
@@ -85,28 +74,22 @@ public class IsometricDepthSorting : MonoBehaviour
         }
     }
 
+    // Function to remove sprites from the sorting list dynamically
     public void RemoveFromSortingList(SpriteRenderer sprite)
     {
         if (spritesToSort.Contains(sprite))
         {
             spritesToSort.Remove(sprite);
-        
         }
     }
 
-    // New method to allow external scripts to request sorting updates
-    public void UpdateSortingOrders(List<GameObject> objectsToSort)
+    private void Update()
     {
-        foreach (GameObject obj in objectsToSort)
+        if (spritesToSort.Count > 0)
         {
-            SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                AddToSortingList(spriteRenderer);
-            }
+            SortSprites();
         }
-
-        SortSpritesByDepthAndY();  // Sort the new list including the added objects
     }
 }
+
 

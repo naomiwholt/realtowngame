@@ -7,22 +7,10 @@ using UnityEngine.Events;
 // SceneController.cs
 public class SceneController : MonoBehaviour
 {
-    public static SceneController _instance { get; private set; }
+
 
     public bool SceneLoadComplete;
 
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void OnEnable()
     {
@@ -75,7 +63,7 @@ public class SceneController : MonoBehaviour
 
         SceneLoadComplete = true;
         Debug.Log(sceneName + " is loaded.");
-        GameManager._instance.StartGame();
+        EssentialsManager._instance.gameManager.StartGame();
     }
 }
 

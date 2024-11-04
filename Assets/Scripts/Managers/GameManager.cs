@@ -5,25 +5,14 @@ using System.Collections;
 // GameManager.cs
 public class GameManager : MonoBehaviour
 {
-    public static GameManager _instance { get; private set; }
+  
 
     public enum GameState { MainMenu, Loading, Playing, Paused, GameOver }
     public GameState currentState;
 
     public static event Action<GameState> OnGameStateChanged;
 
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+
 
     private void Start()
     {
@@ -60,7 +49,7 @@ public class GameManager : MonoBehaviour
     public void LoadGame(string scenename)
     {
         UpdateGameState(GameState.Loading);
-        SceneController._instance.LoadScene(scenename);
+        EssentialsManager._instance.sceneController.LoadScene(scenename);
     }
 
    

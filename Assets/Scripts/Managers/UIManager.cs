@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance { get; private set; }
+   
 
     public GameObject mainMenuUI;
     public GameObject pauseMenuUI;
@@ -10,29 +10,18 @@ public class UIManager : MonoBehaviour
     public GameObject hudUI;
     public GameObject loadingScreenUI;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);  // Destroy duplicates
-        }
-    }
 
     private void Update()
     {
         // Update the UI based on the current game state in every frame
-        UpdateUI(GameManager._instance.currentState);
+        UpdateUI(EssentialsManager._instance.gameManager.currentState);
     }
 
 
     public void LoadingSceneButtonPressed(string scenename)
     {
         // Button calls this to start the game
-        GameManager._instance.LoadGame(scenename);
+        EssentialsManager._instance.gameManager.LoadGame(scenename);
     }
 
     // The switch statement to handle UI updates

@@ -1,14 +1,21 @@
 using UnityEngine;
 
 public class EssentialsManager : MonoBehaviour
+
 {
-    private static EssentialsManager _instance;
+    /*the essentials manager is what makes all the other managers persistent across scenes. if we  need to reference another Manager  in a manager script 
+     will go through essentials manager to get refeferences for other managers*/
 
-    public GameObject gridManager;
-    public GameObject sortingManager;
-    public GameObject Player;
+    public static EssentialsManager _instance { get; private set; }
 
-    
+    public GameManager gameManager;
+    public UIManager uiManager;
+    public SceneController sceneController;
+    public CameraMovement cameraManager;
+    public GridManager gridManager;
+    public IsometricDepthSorting sortingManager;
+    public PlayerController player;
+    public ObjectPlacementManager objectPlacementManager;
 
     private void Awake()
     {
@@ -21,6 +28,17 @@ public class EssentialsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+    //put this in a "get manager references method" later
+     gameManager = GetComponentInChildren<GameManager>();
+        uiManager = GetComponentInChildren<UIManager>();
+     sceneController = GetComponentInChildren<SceneController>();
+     cameraManager = GetComponentInChildren<CameraMovement>();
+     gridManager = GetComponentInChildren<GridManager>();
+     sortingManager = GetComponentInChildren<IsometricDepthSorting>();
+     player = GetComponentInChildren<PlayerController>();
+     objectPlacementManager = GetComponentInChildren<ObjectPlacementManager>();
+     
     }
 
     private void OnEnable()
@@ -38,34 +56,47 @@ public class EssentialsManager : MonoBehaviour
         switch (gameState)
         {
             case GameManager.GameState.MainMenu:
-                gridManager.SetActive(false);
-                sortingManager.SetActive(false);
-                Player.SetActive(false);
-                break;
-
-            case GameManager.GameState.Loading:
-                
+                InitializeManagersForMainMenu();
                 break;
 
             case GameManager.GameState.Playing:
-                // Turn on essential managers
-                gridManager.SetActive(true);
-                sortingManager.SetActive(true);
-                Player.SetActive(true);
+                InitializeManagersForPlay();
                 break;
 
             case GameManager.GameState.Paused:
-                // Handle paused state, e.g., freezing player movement
+                InitializeManagersForPause();
                 break;
 
             case GameManager.GameState.GameOver:
-                // Handle game over state if needed
+                InitializeManagersForGameOver();
                 break;
         }
     }
 
-  
+    private void InitializeManagersForMainMenu()
+    {
+       
+    }
+
+    private void InitializeManagersForPlay()
+    {
+   
+    }
+
+    private void InitializeManagersForPause()
+    {
+
+    }
+
+    private void InitializeManagersForGameOver()
+    {
+      
+    }
+
+
+
 
 }
+
 
 
