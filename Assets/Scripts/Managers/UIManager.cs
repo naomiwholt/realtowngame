@@ -9,7 +9,14 @@ public class UIManager : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject hudUI;
     public GameObject loadingScreenUI;
+    public GameObject inventoryUIPanel;
+    public InventoryUI inventoryUI;
 
+    private void Start()
+    {
+
+        DeactivateAllPanels();
+    }
 
     private void Update()
     {
@@ -27,20 +34,21 @@ public class UIManager : MonoBehaviour
     // The switch statement to handle UI updates
     public void UpdateUI(GameManager.GameState gameState)
     {
-        // Deactivate all panels first
-        mainMenuUI.SetActive(false);
-        pauseMenuUI.SetActive(false);
-        gameOverUI.SetActive(false);
-        hudUI.SetActive(false);
-        loadingScreenUI.SetActive(false);
+        //need to think of a nicer waay to deactivate the panels once we ddont need them
+    
 
-        // Switch to activate the appropriate UI based on the current state
+  
         switch (gameState)
         {
             case GameManager.GameState.MainMenu:
                 mainMenuUI.SetActive(true);
                 break;
             case GameManager.GameState.Playing:
+
+                loadingScreenUI.SetActive(false);
+                mainMenuUI.SetActive(false);
+
+
                 hudUI.SetActive(true);
                 break;
             case GameManager.GameState.Paused:
@@ -53,6 +61,17 @@ public class UIManager : MonoBehaviour
                 loadingScreenUI.SetActive(true);
                 break;
         }
+    }
+
+    public void DeactivateAllPanels() 
+    {
+
+        mainMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
+        gameOverUI.SetActive(false);
+        hudUI.SetActive(false);
+        loadingScreenUI.SetActive(false);
+        inventoryUIPanel.SetActive(false);
     }
 
     // Optionally, you can still use these methods for manual control

@@ -16,6 +16,7 @@ public class EssentialsManager : MonoBehaviour
     public IsometricDepthSorting sortingManager;
     public PlayerController player;
     public ObjectPlacementManager objectPlacementManager;
+    public InventoryManager inventoryManager;
 
     private void Awake()
     {
@@ -29,16 +30,10 @@ public class EssentialsManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-    //put this in a "get manager references method" later
-     gameManager = GetComponentInChildren<GameManager>();
-        uiManager = GetComponentInChildren<UIManager>();
-     sceneController = GetComponentInChildren<SceneController>();
-     cameraManager = GetComponentInChildren<CameraMovement>();
-     gridManager = GetComponentInChildren<GridManager>();
-     sortingManager = GetComponentInChildren<IsometricDepthSorting>();
-     player = GetComponentInChildren<PlayerController>();
-     objectPlacementManager = GetComponentInChildren<ObjectPlacementManager>();
-     
+
+        GetManagersReferences();
+
+
     }
 
     private void OnEnable()
@@ -73,6 +68,19 @@ public class EssentialsManager : MonoBehaviour
         }
     }
 
+    private void GetManagersReferences()
+    {
+        gameManager = GetComponentInChildren<GameManager>();
+        uiManager = GetComponentInChildren<UIManager>();
+        sceneController = GetComponentInChildren<SceneController>();
+        cameraManager = GetComponentInChildren<CameraMovement>();
+        gridManager = GetComponentInChildren<GridManager>();
+        sortingManager = GetComponentInChildren<IsometricDepthSorting>();
+        player = GetComponentInChildren<PlayerController>();
+        objectPlacementManager = GetComponentInChildren<ObjectPlacementManager>();
+        inventoryManager = GetComponentInChildren<InventoryManager>();
+    }
+
     private void InitializeManagersForMainMenu()
     {
        
@@ -80,7 +88,10 @@ public class EssentialsManager : MonoBehaviour
 
     private void InitializeManagersForPlay()
     {
-   
+        objectPlacementManager.Initialise();
+        sortingManager.InitialiseSorting();
+        inventoryManager.Initialise();
+        player.Initialise();
     }
 
     private void InitializeManagersForPause()

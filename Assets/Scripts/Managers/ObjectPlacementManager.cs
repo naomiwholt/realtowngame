@@ -21,28 +21,7 @@ public class ObjectPlacementManager : MonoBehaviour
     public IsometricDepthSorting sortingManager;
 
 
-
-
-    private void OnEnable()
-    {
-        GameManager.OnGameStateChanged += HandleGameStateChanged;  // Subscribe to GameManager state change event
-    }
-
-    private void OnDisable()
-    {
-        GameManager.OnGameStateChanged -= HandleGameStateChanged;  // Unsubscribe to avoid memory leaks
-    }
-
-    private void HandleGameStateChanged(GameManager.GameState newState)
-    {
-        if (newState == GameManager.GameState.Playing)
-        {
-            Initialise();
-            Debug.Log("initialising object placement");
-        }
-    }
-
-    private void Initialise()
+    public void Initialise()
     {
         CollectFurnitureObjects();
         MarkPreExistingObjects();
@@ -58,7 +37,7 @@ public class ObjectPlacementManager : MonoBehaviour
         GameObject furnitureParent = GameObject.Find("Furniture");
         if (furnitureParent != null)
         {
-            Debug.Log("adding furniture to preexisting objects");
+          
             // Add each child of "Furniture" to the preExistingObjects list
             foreach (Transform child in furnitureParent.transform)
             {
@@ -204,16 +183,71 @@ public class ObjectPlacementManager : MonoBehaviour
         }
     }
 
-    public void UpdateSortingOrder(GameObject obj)
-    {
-        SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            // Convert object's world position to grid position
-            Vector2Int gridPosition = EssentialsManager._instance.gridManager.ConvertWorldToGrid(obj.transform.position);
 
-            // Use the Y-tile position to determine sorting order
-            spriteRenderer.sortingOrder = Mathf.FloorToInt(-gridPosition.y * 10);
+    public void PlaceFurniture(GameObject furniturePrefab, Vector3 worldPosition)
+    {
+        Debug.Log("Place Furniture called");
+
+        // Retrieve the current gameplay scene (excluding persistent scene)
+        Scene currentGameplayScene = EssentialsManager._instance.sceneController.GetCurrentGameplayScene();
+        if (!currentGameplayScene.IsValid())
+        {
+            Debug.LogError("No valid gameplay scene found to place furniture.");
+            return;
+        }
+
+        if (furniturePrefab == null)
+        {
+            Debug.LogWarning("Furniture prefab is null. Cannot place furniture.");
+            return;
+        }
+
+        // Convert the world position to a grid position
+        Vector3Int gridPosition = tilemap.WorldToCell(worldPosition);
+
+        // Check if the tile is occupied
+        if (IsTileOccupied(gridPosition))
+        {
+            Debug.LogWarning("Cannot place furniture here, the tile is already occupied.");
+            return;
+        }
+      
+
+        // Instantiate the furniture prefab at the specified world position
+        GameObject furnitureInstance = Instantiate(furniturePrefab, worldPosition, Quaternion.identity);
+
+        // Move the instantiated furniture to the current gameplay scene
+        SceneManager.MoveGameObjectToScene(furnitureInstance, currentGameplayScene);
+
+        //do this a betrter way later 
+        GameObject furnitureParent = GameObject.Find("Furniture");
+        if (furnitureParent != null)
+        {
+            furnitureInstance.transform.SetParent(furnitureParent.transform);
+        }
+        else
+        {
+            Debug.LogWarning("Furniture parent object not found in the scene.");
+        }
+
+        furnitureInstance.layer = LayerMask.NameToLayer("InteractableObject");
+        SpriteRenderer furnitureInstance_SpriteRenderer = furnitureInstance.GetComponent<SpriteRenderer>();
+        furnitureInstance_SpriteRenderer.sortingLayerName = "GameWorld";
+        EssentialsManager._instance.sortingManager.AddToSortingList(furnitureInstance_SpriteRenderer);
+        EssentialsManager._instance.sortingManager.SortSprites();
+        // Mark the tile and its surrounding tiles as occupied
+        BoxCollider2D collider = furnitureInstance.GetComponentInChildren<BoxCollider2D>();
+
+
+        if (collider != null)
+        {
+            MarkObjectTilesAsOccupied(collider);
+        }
+        else
+        {
+
+            // If no collider is found, mark only the center tile as occupied
+            MarkTileAsOccupied(gridPosition);
         }
     }
 

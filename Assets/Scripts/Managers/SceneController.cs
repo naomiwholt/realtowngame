@@ -65,6 +65,24 @@ public class SceneController : MonoBehaviour
         Debug.Log(sceneName + " is loaded.");
         EssentialsManager._instance.gameManager.StartGame();
     }
+
+    public Scene GetCurrentGameplayScene()
+    {
+        // Iterate through loaded scenes, skipping the "Don't Destroy On Load" scene
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene scene = SceneManager.GetSceneAt(i);
+
+            // Skip "Don't Destroy On Load" scene, which has an empty name
+            if (!string.IsNullOrEmpty(scene.name) && scene.isLoaded)
+            {
+                return scene;
+            }
+        }
+
+        Debug.LogWarning("No active gameplay scene found besides the persistent scene.");
+        return default;
+    }
 }
 
 

@@ -6,35 +6,18 @@ public class IsometricDepthSorting : MonoBehaviour
     public List<SpriteRenderer> spritesToSort = new List<SpriteRenderer>();  // List of objects to be sorted
     public Transform cameraTransform;  // The camera or player's forward direction for depth
 
-    private void OnEnable()
-    {
-        GameManager.OnGameStateChanged += HandleGameStateChanged;  // Listen for game state changes
-    }
-
-    private void OnDisable()
-    {
-        GameManager.OnGameStateChanged -= HandleGameStateChanged;  // Unsubscribe to prevent memory leaks
-    }
-
-    private void HandleGameStateChanged(GameManager.GameState newState)
-    {
-        if (newState == GameManager.GameState.Playing)
-        {
-            InitialiseSorting();
-        }
-    }
 
     public void InitialiseSorting()
     {
         spritesToSort.Clear();
 
-        if (ObjectPlacementManager.Instance == null)
+        if (EssentialsManager._instance.objectPlacementManager == null)
         {
-            Debug.LogError("ObjectPlacementManager instance not found!");
+            Debug.LogError("ObjectPlacementManager instaance not found!");
             return;
         }
 
-        foreach (GameObject obj in ObjectPlacementManager.Instance.preExistingObjects)
+        foreach (GameObject obj in EssentialsManager._instance.objectPlacementManager.preExistingObjects)
         {
             SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
             if (spriteRenderer != null)
@@ -47,12 +30,13 @@ public class IsometricDepthSorting : MonoBehaviour
     }
 
     // Centralized sorting function for all sprites
-    void SortSprites()
+    public void SortSprites()
     {
+        Debug.Log("sorting sprites");
         // Sort by Y position, then X for ties, with lower Y values appearing in front
         spritesToSort.Sort((a, b) =>
         {
-            int yComparison = b.transform.position.y.CompareTo(a.transform.position.y); // Reverse Y comparison
+            int yComparison = b.transform.position.y.CompareTo(a.transform.position.y); 
             if (yComparison != 0) return yComparison;
 
             return b.transform.position.x.CompareTo(a.transform.position.x); // Reverse X comparison if needed

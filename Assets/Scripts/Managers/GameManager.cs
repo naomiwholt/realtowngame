@@ -56,7 +56,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame() // should maybe put a scene ready bool or something here later? 
     {
-        UpdateGameState(GameState.Playing);    
+        UpdateGameState(GameState.Playing);  
+       
     }
   
 }

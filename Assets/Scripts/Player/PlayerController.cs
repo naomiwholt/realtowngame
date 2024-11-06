@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,10 +16,15 @@ public class PlayerController : MonoBehaviour
     private PlayerAnimationController animationController;
     private IsometricDepthSorting depthSortingManager;
 
-    void Awake()
+    public void Initialise()
     {
         playerInputActions = new PlayerInputActions();
         animationController = GetComponent<PlayerAnimationController>();
+        playerInputActions.Player.Move.Enable();
+        playerInputActions.Player.Click.Enable();
+        playerInputActions.Player.Move.performed += OnMove;
+        playerInputActions.Player.Move.canceled += OnMoveCanceled;
+        playerInputActions.Player.Click.performed += OnClick;
     }
 
     private void Start()
@@ -70,14 +76,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        playerInputActions.Player.Move.Enable();
-        playerInputActions.Player.Click.Enable();
-        playerInputActions.Player.Move.performed += OnMove;
-        playerInputActions.Player.Move.canceled += OnMoveCanceled;
-        playerInputActions.Player.Click.performed += OnClick;
-    }
+   
 
     void OnDisable()
     {
@@ -146,6 +145,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnClick(InputAction.CallbackContext context)
     {
+        // Check if the click is over a UI element
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            // If clicking on UI, don't move the player
+            return;
+        }
+
         Vector3 mouseWorldPosition = GetWorldPositionFromMouse();
         targetPosition = mouseWorldPosition;
         isMovingToClick = true;
