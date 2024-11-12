@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1839735485 &693230085 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 5027235538566816115, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+  m_PrefabInstance: {fileID: 1807468962}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1807468962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -190,6 +195,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5027235538566816118, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: tilemap
+      value: 
+      objectReference: {fileID: 693230085}
+    - target: {fileID: 5027235538566816118, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: whiteTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 4664eece6573a4543891eea61d5a935d, type: 2}
+    - target: {fileID: 5027235538566816118, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: orangeTile
+      value: 
+      objectReference: {fileID: 11400000, guid: d73fa4a217984b54099df40050366dda, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

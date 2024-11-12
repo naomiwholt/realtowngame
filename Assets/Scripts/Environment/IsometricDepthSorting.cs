@@ -32,7 +32,7 @@ public class IsometricDepthSorting : MonoBehaviour
     // Centralized sorting function for all sprites
     public void SortSprites()
     {
-        Debug.Log("sorting sprites");
+        //Debug.Log("sorting sprites");
         // Sort by Y position, then X for ties, with lower Y values appearing in front
         spritesToSort.Sort((a, b) =>
         {
