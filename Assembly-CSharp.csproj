@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Managers\ObjectPlacementManager.cs" />
     <Compile Include="Assets\Scripts\UI\HUD\HUDUI.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Data\InventoryItems\InventoryItemData.cs" />
     <Compile Include="Assets\Scripts\Core\GameManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\Managers\SceneController.cs" />
@@ -75,7 +76,6 @@
     <Compile Include="Assets\Scripts\UI\Inventory\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\Managers\DepthSortingManager.cs" />
     <Compile Include="Assets\CameraInputActions.cs" />
-    <Compile Include="Assets\Scripts\Data\InventoryItemData.cs" />
     <Compile Include="Assets\Scripts\Core\EssentialsManager.cs" />
   </ItemGroup>
   <ItemGroup>

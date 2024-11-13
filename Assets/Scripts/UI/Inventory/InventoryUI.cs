@@ -23,16 +23,15 @@ public class InventoryUI : MonoBehaviour
         }
 
         // Create a slot for each item in the inventory
-        foreach (GameObject prefab in inventoryManager.GetInventoryItems())
+        foreach (InventoryItemData item in inventoryManager.GetInventoryItems())
         {
             GameObject slotObj = Instantiate(inventorySlotPrefab, inventoryGrid);
             InventorySlot slot = slotObj.GetComponent<InventorySlot>();
 
-            // Pass the prefab reference itself; do not instantiate it here
-            slot.SetItem(prefab);
+            // Pass the InventoryItemData reference
+            slot.SetItem(item);
         }
     }
 }
-
 
 

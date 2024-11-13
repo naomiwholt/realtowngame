@@ -90,7 +90,7 @@ public class EssentialsManager : MonoBehaviour
     {
         objectPlacementManager.Initialise();
         sortingManager.InitialiseSorting();
-        inventoryManager.Initialise();
+       // inventoryManager.Initialise();
         player.Initialise();
     }
 

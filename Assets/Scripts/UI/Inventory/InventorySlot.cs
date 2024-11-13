@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Image icon;
-    private GameObject furniturePrefab;
+    private InventoryItemData inventoryItem;
     private Canvas canvas;
 
     private void Awake()
@@ -13,34 +13,25 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         canvas = GetComponentInParent<Canvas>();
     }
 
-    public void SetItem(GameObject furniturePrefabFromInventory)
+    public void SetItem(InventoryItemData item)
     {
-        this.furniturePrefab = furniturePrefabFromInventory;
+        this.inventoryItem = item;
 
-        // Set the icon to represent the prefab visually
-        SpriteRenderer spriteRenderer = furniturePrefabFromInventory.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            icon.sprite = spriteRenderer.sprite;
-            icon.enabled = true;
-        }
-        else
-        {
-            Debug.LogError($"No SpriteRenderer found on {furniturePrefabFromInventory.name}. Ensure the prefab has a SpriteRenderer with a sprite.");
-            icon.enabled = false;
-        }
+        // Set the icon to represent the item visually
+        icon.sprite = item.icon;
+        icon.enabled = true;
     }
 
     public void ClearSlot()
     {
-        furniturePrefab = null;
+        inventoryItem = null;
         icon.sprite = null;
         icon.enabled = false;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        EssentialsManager._instance.objectPlacementManager.StartDrag(furniturePrefab);
+        EssentialsManager._instance.objectPlacementManager.StartDrag(inventoryItem.prefab);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -50,11 +41,9 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        EssentialsManager._instance.objectPlacementManager.EndDrag(eventData.position, furniturePrefab, this);
+        EssentialsManager._instance.objectPlacementManager.EndDrag(eventData.position, inventoryItem, this);
     }
 }
-
-
 
 
 

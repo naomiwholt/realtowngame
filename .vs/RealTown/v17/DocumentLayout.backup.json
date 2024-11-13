@@ -46,12 +46,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
@@ -64,7 +60,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Data\\InventoryItemData.cs",
               "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Data\\InventoryItemData.cs",
               "RelativeToolTip": "Assets\\Scripts\\Data\\InventoryItemData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-13T12:54:50.09Z",
               "EditorCaption": ""

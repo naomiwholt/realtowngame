@@ -151,6 +151,26 @@ PrefabInstance:
       propertyPath: m_UiScaleMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3111420596419793780, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: inventoryItems.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3111420596419793780, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: inventoryItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c7b46b0c5515aa74d953da4cf897be5d, type: 2}
+    - target: {fileID: 3111420596419793780, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: inventoryItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4eb87b90d7025ca41844d4ad6dce1b42, type: 2}
+    - target: {fileID: 3111420596419793780, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: inventoryItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1395d4fe8f67841a76156c9ea20981, type: 2}
+    - target: {fileID: 3111420596419793780, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: inventoryItems.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: f9ee5eb4a0656b749b9fad9d2c76ebf1, type: 2}
     - target: {fileID: 4631499760121079293, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
       propertyPath: m_ClearFlags
       value: 2

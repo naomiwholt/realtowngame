@@ -4,41 +4,33 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> furniturePrefabs; // List of all furniture prefabs that can be in the inventory
+    private List<InventoryItemData> inventoryItems; // List to store items currently in the inventory
 
-    public List<GameObject> inventoryItems; // List to store items currently in the inventory
-
-    public void Initialise()
+    // Method to add an item to the inventory
+    public void AddItem(InventoryItemData item)
     {
-        // Initialize inventory with the prefabs set in the Inspector
-        inventoryItems = new List<GameObject>(furniturePrefabs);
-    }
-
-    // Method to add a furniture prefab to the inventory
-    public void AddItem(GameObject furniturePrefab)
-    {
-        if (furniturePrefab != null && !inventoryItems.Contains(furniturePrefab))
+        if (item != null && !inventoryItems.Contains(item))
         {
-            inventoryItems.Add(furniturePrefab);
+            inventoryItems.Add(item);
             EssentialsManager._instance.uiManager.inventoryUI.UpdateInventoryUI();
         }
     }
 
-    // Method to remove a furniture item from the inventory
-    public bool RemoveItem(GameObject furniturePrefab)
+    // Method to remove an item from the inventory
+    public bool RemoveItem(InventoryItemData item)
     {
-        if (inventoryItems.Contains(furniturePrefab))
+        if (inventoryItems.Contains(item))
         {
-            inventoryItems.Remove(furniturePrefab);
-           // EssentialsManager._instance.uiManager.inventoryUI.UpdateInventoryUI();
+            inventoryItems.Remove(item);
+            EssentialsManager._instance.uiManager.inventoryUI.UpdateInventoryUI();
             return true;
         }
         return false;
     }
 
     // Method to retrieve a list of all items currently in the inventory
-    public List<GameObject> GetInventoryItems()
+    public List<InventoryItemData> GetInventoryItems()
     {
-        return new List<GameObject>(inventoryItems); // Return a copy to prevent direct modification
+        return new List<InventoryItemData>(inventoryItems); // Return a copy to prevent direct modification
     }
 }

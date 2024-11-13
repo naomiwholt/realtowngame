@@ -82,7 +82,7 @@ public class ObjectPlacementManager : MonoBehaviour
         }
     }
 
-    public void EndDrag(Vector2 screenPosition, GameObject furniturePrefab, InventorySlot slot)
+    public void EndDrag(Vector2 screenPosition, InventoryItemData itemData, InventorySlot slot)
     {
         if (previewObject != null)
         {
@@ -94,8 +94,8 @@ public class ObjectPlacementManager : MonoBehaviour
             if (collider != null && EssentialsManager._instance.gridManager.ValidateColliderWithinValidTiles(collider))
             {
                 // Place furniture in the game world if the position is valid
-                PlaceFurniture(furniturePrefab, worldPosition);
-                EssentialsManager._instance.inventoryManager.RemoveItem(furniturePrefab);
+                PlaceFurniture(itemData.prefab, worldPosition);
+                EssentialsManager._instance.inventoryManager.RemoveItem(itemData);
 
                 // Clear the inventory slot on successful placement
                 slot.ClearSlot();

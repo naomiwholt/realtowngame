@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f1d06bd6d8614449c280fe13e128a8, type: 3}
+  m_Name: Bin
+  m_EditorClassIdentifier: 
+  itemName: Bin
+  icon: {fileID: -1231211509, guid: 803a9beb6b79005439f8fcd028a9f1cb, type: 3}
+  prefab: {fileID: 2681937359439538726, guid: 410f6bb6a7dbb54489e1c64f961e6c31, type: 3}
+  description: a bin to put rubish in
+  maxStackSize: 1

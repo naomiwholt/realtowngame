@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f1d06bd6d8614449c280fe13e128a8, type: 3}
+  m_Name: Couch
+  m_EditorClassIdentifier: 
+  itemName: Couch
+  icon: {fileID: 1970101170, guid: 803a9beb6b79005439f8fcd028a9f1cb, type: 3}
+  prefab: {fileID: 5678312629177222150, guid: b5ec8be3259a1ca4e86d69cbd38be547, type: 3}
+  description: a couch to sit on
+  maxStackSize: 1
