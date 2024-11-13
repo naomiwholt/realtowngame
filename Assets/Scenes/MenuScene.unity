@@ -151,6 +151,26 @@ PrefabInstance:
       propertyPath: m_UiScaleMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4631499760121079293, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631499760121079293, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631499760121079293, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631499760121079293, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631499760121079293, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5027235537526679876, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
       propertyPath: m_Name
       value: Essentials

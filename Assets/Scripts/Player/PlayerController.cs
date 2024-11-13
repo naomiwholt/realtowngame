@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInputActions playerInputActions;
 
     private PlayerAnimationController animationController;
-    private IsometricDepthSorting depthSortingManager;
+    private DepthSortingManager depthSortingManager;
 
     public void Initialise()
     {
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        depthSortingManager = FindObjectOfType<IsometricDepthSorting>();
+        depthSortingManager = FindObjectOfType<DepthSortingManager>();
         if (depthSortingManager == null)
         {
             Debug.LogError("IsometricDepthSorting manager not found in the scene!");

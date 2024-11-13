@@ -13,7 +13,7 @@ public class EssentialsManager : MonoBehaviour
     public SceneController sceneController;
     public CameraMovement cameraManager;
     public GridManager gridManager;
-    public IsometricDepthSorting sortingManager;
+    public DepthSortingManager sortingManager;
     public PlayerController player;
     public ObjectPlacementManager objectPlacementManager;
     public InventoryManager inventoryManager;
@@ -75,7 +75,7 @@ public class EssentialsManager : MonoBehaviour
         sceneController = GetComponentInChildren<SceneController>();
         cameraManager = GetComponentInChildren<CameraMovement>();
         gridManager = GetComponentInChildren<GridManager>();
-        sortingManager = GetComponentInChildren<IsometricDepthSorting>();
+        sortingManager = GetComponentInChildren<DepthSortingManager>();
         player = GetComponentInChildren<PlayerController>();
         objectPlacementManager = GetComponentInChildren<ObjectPlacementManager>();
         inventoryManager = GetComponentInChildren<InventoryManager>();

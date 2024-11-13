@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IsometricDepthSorting : MonoBehaviour
+public class DepthSortingManager : MonoBehaviour
 {
     public List<SpriteRenderer> spritesToSort = new List<SpriteRenderer>();  // List of objects to be sorted
     public Transform cameraTransform;  // The camera or player's forward direction for depth

@@ -3,36 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\naomi\\LoserTown\\RealTown\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|c:\\users\\naomi\\losertown\\realtown\\assets\\scripts\\interactablecomputerscripts\\platformergame\\platformerplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\scripts\\interactablecomputerscripts\\platformergame\\platformerplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|c:\\users\\naomi\\losertown\\realtown\\assets\\scripts\\data\\inventoryitemdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\data\\inventoryitemdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\InteractableComputerScripts\\PlatformerGame\\PlatformerPlayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\InteractableComputerScripts\\PlatformerGame\\PlatformerPlayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\managers\\scenecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\scenecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\managers\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Managers\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\isometricdepthsorting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\isometricdepthsorting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\EssentialsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Managers\\EssentialsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\objectplacementmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\objectplacementmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\ObjectPlacementManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\ObjectPlacementManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\managers\\essentialsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\essentialsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\IsometricDepthSorting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\IsometricDepthSorting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\GridManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GridManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\cameramovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\cameramovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\CameraMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\CameraMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,24 +46,39 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "InventoryItemData.cs",
+              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Data\\InventoryItemData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Data\\InventoryItemData.cs",
+              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Data\\InventoryItemData.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Data\\InventoryItemData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T12:54:50.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "PlatformerPlayer.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\InteractableComputerScripts\\PlatformerGame\\PlatformerPlayer.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InteractableComputerScripts\\PlatformerGame\\PlatformerPlayer.cs",
               "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\InteractableComputerScripts\\PlatformerGame\\PlatformerPlayer.cs",
               "RelativeToolTip": "Assets\\Scripts\\InteractableComputerScripts\\PlatformerGame\\PlatformerPlayer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T07:44:54.984Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-17T07:44:54.984Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\GameManager.cs",
@@ -71,7 +90,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SceneController.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\SceneController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\SceneController.cs",
@@ -83,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "EssentialsManager.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\EssentialsManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\EssentialsManager.cs",
@@ -95,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ObjectPlacementManager.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\ObjectPlacementManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ObjectPlacementManager.cs",
@@ -107,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "IsometricDepthSorting.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\IsometricDepthSorting.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\IsometricDepthSorting.cs",
@@ -119,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "GridManager.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\GridManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GridManager.cs",
@@ -131,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "CameraMovement.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\CameraMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CameraMovement.cs",

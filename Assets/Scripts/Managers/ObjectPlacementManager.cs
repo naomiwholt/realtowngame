@@ -6,7 +6,7 @@ public class ObjectPlacementManager : MonoBehaviour
 {
     // Scene objects
     public List<GameObject> preExistingObjects;
-    public IsometricDepthSorting sortingManager;
+    public DepthSortingManager sortingManager;
 
     private GameObject previewObject;
     private Color previewValidColor = new Color(1, 1, 1, 0.5f); // semi-transparent white
