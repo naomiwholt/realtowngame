@@ -7,20 +7,21 @@ public class InventoryUI : MonoBehaviour
 
     private InventoryManager inventoryManager;
 
-    private void Start()
+    private void OnEnable()
     {
         inventoryManager = EssentialsManager._instance.inventoryManager;
         UpdateInventoryUI();
     }
 
+
     // Updates inventory slots based on items in InventoryManager
     public void UpdateInventoryUI()
     {
         // Clear existing slots
-        foreach (Transform child in inventoryGrid)
-        {
-            Destroy(child.gameObject);
-        }
+       foreach (Transform child in inventoryGrid)
+       {
+           Destroy(child.gameObject);
+       }
 
         // Create a slot for each item in the inventory
         foreach (InventoryItemData item in inventoryManager.GetInventoryItems())

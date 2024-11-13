@@ -58,8 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a09c773a3ba42940a669f0efc5b7ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 9050351925964803882, guid: cb4dd775a26238e459f39987504705a0, type: 3}
-  testsprite: {fileID: 0}
+  icon: {fileID: 8451812738115108682}
 --- !u!114 &8451812738115108682
 MonoBehaviour:
   m_ObjectHideFlags: 0

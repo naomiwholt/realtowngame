@@ -94,11 +94,9 @@ public class ObjectPlacementManager : MonoBehaviour
             if (collider != null && EssentialsManager._instance.gridManager.ValidateColliderWithinValidTiles(collider))
             {
                 // Place furniture in the game world if the position is valid
-                PlaceFurniture(itemData.prefab, worldPosition);
                 EssentialsManager._instance.inventoryManager.RemoveItem(itemData);
-
-                // Clear the inventory slot on successful placement
-                slot.ClearSlot();
+                slot.ClearSlot(); // Clear the inventory slot on successful placement
+               // Destroy(previewObject); // Remove the preview object
             }
             else
             {
@@ -106,7 +104,9 @@ public class ObjectPlacementManager : MonoBehaviour
             }
             Destroy(previewObject); // Remove the preview object
         }
-    }
+     
+    
+}
 
 
 

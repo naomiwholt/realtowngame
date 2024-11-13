@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private PlayerAnimationController animationController;
     private DepthSortingManager depthSortingManager;
 
+    private bool isPointerOverUI = false;
     public void Initialise()
     {
         playerInputActions = new PlayerInputActions();
@@ -145,7 +146,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnClick(InputAction.CallbackContext context)
     {
-        // Check if the click is over a UI element
         if (EventSystem.current.IsPointerOverGameObject())
         {
             // If clicking on UI, don't move the player
