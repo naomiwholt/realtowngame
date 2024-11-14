@@ -93,9 +93,10 @@ public class ObjectPlacementManager : MonoBehaviour
             BoxCollider2D collider = previewObject.GetComponentInChildren<BoxCollider2D>();
             if (collider != null && EssentialsManager._instance.gridManager.ValidateColliderWithinValidTiles(collider))
             {
+                slot.ClearSlot(); // Clear the inventory slot on successful placement
                 // Place furniture in the game world if the position is valid
                 EssentialsManager._instance.inventoryManager.RemoveItem(itemData);
-                slot.ClearSlot(); // Clear the inventory slot on successful placement
+              
                // Destroy(previewObject); // Remove the preview object
             }
             else
