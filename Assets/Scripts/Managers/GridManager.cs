@@ -21,6 +21,28 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    // Method to mark all tiles within the bounds of a collider
+    public void MarkTilesWithinColliderBounds(BoxCollider2D collider)
+    {
+        Bounds bounds = collider.bounds;
+        Vector3Int minCell = tilemap.WorldToCell(bounds.min);
+        Vector3Int maxCell = tilemap.WorldToCell(bounds.max);
+
+        for (int x = minCell.x; x <= maxCell.x; x++)
+        {
+            for (int y = minCell.y; y <= maxCell.y; y++)
+            {
+                Vector3Int cellPosition = new Vector3Int(x, y, 0);
+                Vector3 worldPosition = tilemap.CellToWorld(cellPosition);
+
+                if (collider.OverlapPoint(worldPosition))
+                {
+                    MarkTileAsOccupied(cellPosition);
+                }
+            }
+        }
+    }
+
     // Check if a tile is occupied
     public bool IsTileOccupied(Vector3Int tilePosition)
     {

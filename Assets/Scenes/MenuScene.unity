@@ -247,11 +247,26 @@ PrefabInstance:
       propertyPath: orangeTile
       value: 
       objectReference: {fileID: 11400000, guid: d73fa4a217984b54099df40050366dda, type: 2}
+    - target: {fileID: 8290708604945010406, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 1807468963}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+--- !u!114 &1807468963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7958944028405326897, guid: b863823afd75c8e48afc4cca1f9ec5c9, type: 3}
+  m_PrefabInstance: {fileID: 1807468962}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e70e04cb4e4737448adc59e91d43092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
