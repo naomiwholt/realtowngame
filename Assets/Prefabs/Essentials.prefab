@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: -482}
+  m_AnchoredPosition: {x: -12, y: -486}
   m_SizeDelta: {x: 1920, y: 97.9961}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5149261916348463398
@@ -207,7 +207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9141660023985688017
 RectTransform:
   m_ObjectHideFlags: 0
@@ -504,13 +504,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b718812d0b274469a496c822d03b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  furniturePrefabs:
-  - {fileID: 1247267521826163511, guid: 305287e798990c34ca1aa6aaf173b041, type: 3}
-  - {fileID: 2681937359439538726, guid: 410f6bb6a7dbb54489e1c64f961e6c31, type: 3}
-  - {fileID: 5678312629177222150, guid: b5ec8be3259a1ca4e86d69cbd38be547, type: 3}
-  - {fileID: 861265701689323848, guid: b384b31be36463d4ba91f87b75afe206, type: 3}
-  - {fileID: 7910644374761892236, guid: 4ad96bff938e67f468c8c6eb88738465, type: 3}
-  inventoryItems: []
+  inventoryItems:
+  - {fileID: 11400000, guid: c7b46b0c5515aa74d953da4cf897be5d, type: 2}
+  - {fileID: 11400000, guid: 4eb87b90d7025ca41844d4ad6dce1b42, type: 2}
+  - {fileID: 11400000, guid: fe1395d4fe8f67841a76156c9ea20981, type: 2}
+  - {fileID: 11400000, guid: f9ee5eb4a0656b749b9fad9d2c76ebf1, type: 2}
 --- !u!1 &5027235537526679876
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +618,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2737a118c913934f87c5d6828e75951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 5480214459668910884}
+  whiteTile: {fileID: 11400000, guid: 4664eece6573a4543891eea61d5a935d, type: 2}
+  orangeTile: {fileID: 11400000, guid: d73fa4a217984b54099df40050366dda, type: 2}
+  yellowTile: {fileID: 11400000, guid: fdbb64d7efc975c4cafade0ae60ceeb2, type: 2}
+  tilemap: {fileID: 5027235538566816115}
 --- !u!114 &5027235538566816116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,10 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e447ad0c7a62773458ebd6b5caa894b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteTile: {fileID: 11400000, guid: 4664eece6573a4543891eea61d5a935d, type: 2}
-  orangeTile: {fileID: 11400000, guid: d73fa4a217984b54099df40050366dda, type: 2}
   preExistingObjects: []
-  tilemap: {fileID: 5027235538566816115}
   sortingManager: {fileID: 8588785143009663997}
 --- !u!156049354 &5027235538566816113
 Grid:
@@ -4395,7 +4393,7 @@ MonoBehaviour:
   hudUI: {fileID: 5601947944818502895}
   loadingScreenUI: {fileID: 2186888172396780547}
   inventoryUIPanel: {fileID: 2018128872182251217}
-  inventoryUI: {fileID: 0}
+  inventoryUI: {fileID: 7958944028405326897}
 --- !u!224 &232537411226477714 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6871303378664621626, guid: e603c07800fe87740865a543f3ce9104, type: 3}
@@ -4524,6 +4522,22 @@ PrefabInstance:
     - target: {fileID: 2360709442111785641, guid: abb366919a7e8ac46a312669f419a313, type: 3}
       propertyPath: orthographic size
       value: 247.74242
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360709442111785641, guid: abb366919a7e8ac46a312669f419a313, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360709442111785641, guid: abb366919a7e8ac46a312669f419a313, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360709442111785641, guid: abb366919a7e8ac46a312669f419a313, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360709442111785641, guid: abb366919a7e8ac46a312669f419a313, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2360709442111785642, guid: abb366919a7e8ac46a312669f419a313, type: 3}
       propertyPath: m_Name

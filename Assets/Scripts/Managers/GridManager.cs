@@ -115,17 +115,18 @@ public class GridManager : MonoBehaviour
             {
                 if (!currentPreviewTiles.Contains(cell))
                 {
-                    tilemap.SetTile(cell, null);
+                    // Reset the tile back to whiteTile instead of null
+                    tilemap.SetTile(cell, whiteTile);
                 }
             }
             previousPreviewTiles = currentPreviewTiles;
         }
         else
         {
-            // Clear all preview tiles
+            // Clear all preview tiles by setting them back to whiteTile
             foreach (Vector3Int cell in previousPreviewTiles)
             {
-                tilemap.SetTile(cell, null);
+                tilemap.SetTile(cell, whiteTile);
             }
             previousPreviewTiles.Clear();
         }
