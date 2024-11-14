@@ -74,11 +74,11 @@ public class ObjectPlacementManager : MonoBehaviour
             worldPosition.z = 0;
             previewObject.transform.position = worldPosition;
 
-            Vector3Int gridPosition = EssentialsManager._instance.gridManager.tilemap.WorldToCell(worldPosition);
-            bool isValid = !EssentialsManager._instance.gridManager.IsTileOccupied(gridPosition);
-
-            // Update the preview color to indicate placement validity
-            previewObject.GetComponent<SpriteRenderer>().color = isValid ? previewValidColor : previewInvalidColor;
+            BoxCollider2D collider = previewObject.GetComponentInChildren<BoxCollider2D>();
+            if (collider != null)
+            {
+                EssentialsManager._instance.gridManager.PreviewTilesWithinColliderBounds(collider, true);
+            }
         }
     }
 
@@ -89,35 +89,44 @@ public class ObjectPlacementManager : MonoBehaviour
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
             worldPosition.z = 0;
 
-            // Validate that the furniture's collider is within valid tiles
             BoxCollider2D collider = previewObject.GetComponentInChildren<BoxCollider2D>();
             if (collider != null && EssentialsManager._instance.gridManager.ValidateColliderWithinValidTiles(collider))
             {
-                slot.ClearSlot(); // Clear the inventory slot on successful placement
-                // Place furniture in the game world if the position is valid
+                slot.ClearSlot();
                 EssentialsManager._instance.inventoryManager.RemoveItem(itemData);
-              
-               // Destroy(previewObject); // Remove the preview object
+                EssentialsManager._instance.objectPlacementManager.PlaceFurniture(itemData.prefab, worldPosition);
             }
             else
             {
                 Debug.LogWarning("Cannot place furniture; part of the object is outside valid tiles or overlaps an occupied tile.");
             }
-            Destroy(previewObject); // Remove the preview object
+            ClearPreview();
+            Destroy(previewObject);
         }
-     
-    
-}
+    }
 
 
 
 
+
+    public void ClearPreview()
+    {
+        if (previewObject != null)
+        {
+            BoxCollider2D collider = previewObject.GetComponentInChildren<BoxCollider2D>();
+            if (collider != null)
+            {
+                EssentialsManager._instance.gridManager.PreviewTilesWithinColliderBounds(collider, false);
+            }
+        }
+    }
 
 
 
 
     public void PlaceFurniture(GameObject furniturePrefab, Vector3 worldPosition)
     {
+        Debug.Log("Furniture placing method called");
         if (furniturePrefab == null)
         {
             Debug.LogWarning("Furniture prefab is null. Cannot place furniture.");
@@ -137,7 +146,7 @@ public class ObjectPlacementManager : MonoBehaviour
             Debug.LogWarning("Cannot place furniture here, the tile is already occupied.");
             return;
         }
-
+       Debug.Log("Furniture placed at " + worldPosition);   
         GameObject furnitureInstance = Instantiate(furniturePrefab, worldPosition, Quaternion.identity);
         SceneManager.MoveGameObjectToScene(furnitureInstance, currentGameplayScene);
 

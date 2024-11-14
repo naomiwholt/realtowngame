@@ -5,9 +5,9 @@ using UnityEngine.Tilemaps;
 public class GridManager : MonoBehaviour
 {
     private HashSet<Vector3Int> occupiedtiles = new HashSet<Vector3Int>();
-
     public TileBase whiteTile; // Unoccupied tile color
     public TileBase orangeTile; // Occupied tile color
+    public TileBase yellowTile; // Preview tile color
     public Tilemap tilemap;
 
     private Grid grid;
@@ -80,8 +80,56 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    // Mark tiles occupied by an object's collider
+    private HashSet<Vector3Int> previousPreviewTiles = new HashSet<Vector3Int>();
 
+    public void PreviewTilesWithinColliderBounds(BoxCollider2D collider, bool showPreview)
+    {
+        Bounds bounds = collider.bounds;
+        Vector3Int minCell = tilemap.WorldToCell(bounds.min);
+        Vector3Int maxCell = tilemap.WorldToCell(bounds.max);
+
+        HashSet<Vector3Int> currentPreviewTiles = new HashSet<Vector3Int>();
+
+        for (int x = minCell.x; x <= maxCell.x; x++)
+        {
+            for (int y = minCell.y; y <= maxCell.y; y++)
+            {
+                Vector3Int cellPosition = new Vector3Int(x, y, 0);
+                Vector3 worldPosition = tilemap.CellToWorld(cellPosition);
+
+                if (collider.OverlapPoint(worldPosition))
+                {
+                    currentPreviewTiles.Add(cellPosition);
+                    if (showPreview)
+                    {
+                        tilemap.SetTile(cellPosition, yellowTile);
+                    }
+                }
+            }
+        }
+
+        if (showPreview)
+        {
+            // Clear previously previewed tiles that are no longer in the current preview set
+            foreach (Vector3Int cell in previousPreviewTiles)
+            {
+                if (!currentPreviewTiles.Contains(cell))
+                {
+                    tilemap.SetTile(cell, null);
+                }
+            }
+            previousPreviewTiles = currentPreviewTiles;
+        }
+        else
+        {
+            // Clear all preview tiles
+            foreach (Vector3Int cell in previousPreviewTiles)
+            {
+                tilemap.SetTile(cell, null);
+            }
+            previousPreviewTiles.Clear();
+        }
+    }
     // Flood fill starting from a center cell, marking overlapping tiles
     private bool FloodFillFromCenter(BoxCollider2D collider, Vector3Int centerCell, bool validateOnly)
     {
