@@ -1,3 +1,4 @@
+// Updated GridManager script with additional debug logs
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -30,6 +31,8 @@ public class GridManager : MonoBehaviour
         Vector3Int minCell = tilemap.WorldToCell(bounds.min);
         Vector3Int maxCell = tilemap.WorldToCell(bounds.max);
 
+        Debug.Log($"Marking tiles within bounds: minCell={minCell}, maxCell={maxCell}");
+
         for (int x = minCell.x; x <= maxCell.x; x++)
         {
             for (int y = minCell.y; y <= maxCell.y; y++)
@@ -55,12 +58,14 @@ public class GridManager : MonoBehaviour
     public bool ValidateColliderWithinValidTiles(BoxCollider2D collider)
     {
         Vector3Int centerCell = tilemap.WorldToCell(collider.bounds.center);
+        Debug.Log($"Validating collider within tiles: centerCell={centerCell}");
         return FloodFillFromCenter(collider, centerCell, true);
     }
 
     public void MarkObjectTilesAsOccupied(BoxCollider2D collider)
     {
         Vector3Int centerCell = tilemap.WorldToCell(collider.bounds.center);
+        Debug.Log($"Marking object tiles as occupied: centerCell={centerCell}");
         FloodFillFromCenter(collider, centerCell, false);
     }
 
@@ -70,6 +75,7 @@ public class GridManager : MonoBehaviour
         if (occupiedtiles.Add(gridPosition))
         {
             tilemap.SetTile(gridPosition, orangeTile);
+            Debug.Log($"Marked tile as occupied: position={gridPosition}");
         }
     }
 
@@ -79,6 +85,7 @@ public class GridManager : MonoBehaviour
         if (occupiedtiles.Remove(gridPosition))
         {
             tilemap.SetTile(gridPosition, whiteTile);
+            Debug.Log($"Reset tile to unoccupied: position={gridPosition}");
         }
     }
 
@@ -89,6 +96,8 @@ public class GridManager : MonoBehaviour
         Bounds bounds = collider.bounds;
         Vector3Int minCell = tilemap.WorldToCell(bounds.min);
         Vector3Int maxCell = tilemap.WorldToCell(bounds.max);
+
+        Debug.Log($"Previewing tiles within bounds: minCell={minCell}, maxCell={maxCell}, showPreview={showPreview}");
 
         HashSet<Vector3Int> currentPreviewTiles = new HashSet<Vector3Int>();
 
@@ -107,10 +116,12 @@ public class GridManager : MonoBehaviour
                         if (IsTileOccupied(cellPosition))
                         {
                             tilemap.SetTile(cellPosition, redTile);
+                            Debug.Log($"Preview tile marked as invalid: position={cellPosition}");
                         }
                         else
                         {
                             tilemap.SetTile(cellPosition, yellowTile);
+                            Debug.Log($"Preview tile marked as valid: position={cellPosition}");
                         }
                     }
                 }
@@ -144,6 +155,7 @@ public class GridManager : MonoBehaviour
             previousPreviewTiles.Clear();
         }
     }
+
     private HashSet<Vector3Int> FloodFillForPreview(BoxCollider2D collider, Vector3Int centerCell, bool showPreview)
     {
         Vector3Int[] directions = {
@@ -153,6 +165,8 @@ public class GridManager : MonoBehaviour
 
         var cellsToCheck = new Queue<Vector3Int>(new[] { centerCell });
         var visitedCells = new HashSet<Vector3Int> { centerCell };
+
+        Debug.Log($"Starting flood fill for preview: centerCell={centerCell}, showPreview={showPreview}");
 
         while (cellsToCheck.Count > 0)
         {
@@ -173,10 +187,12 @@ public class GridManager : MonoBehaviour
                 if (IsTileOccupied(currentCell))
                 {
                     tilemap.SetTile(currentCell, redTile);
+                    Debug.Log($"Preview flood fill: marked as invalid: position={currentCell}");
                 }
                 else
                 {
                     tilemap.SetTile(currentCell, yellowTile);
+                    Debug.Log($"Preview flood fill: marked as valid: position={currentCell}");
                 }
             }
 
@@ -203,6 +219,8 @@ public class GridManager : MonoBehaviour
         var visitedCells = new HashSet<Vector3Int> { centerCell };
         bool allTilesValid = true;
 
+        Debug.Log($"Starting flood fill from center: centerCell={centerCell}, validateOnly={validateOnly}");
+
         while (cellsToCheck.Count > 0)
         {
             var currentCell = cellsToCheck.Dequeue();
@@ -217,14 +235,17 @@ public class GridManager : MonoBehaviour
                 if (!isValidTile)
                 {
                     allTilesValid = false;
+                    Debug.Log($"Validation failed at position={currentCell}");
                     break;
                 }
                 tilemap.SetTile(currentCell, isValidTile ? orangeTile : whiteTile); // Visual feedback for testing
+                Debug.Log($"Validated tile: position={currentCell}, isValid={isValidTile}");
             }
             else
             {
                 // For marking, set tiles as occupied
                 MarkTileAsOccupied(currentCell);
+                Debug.Log($"Marked tile during flood fill: position={currentCell}");
             }
 
             foreach (var direction in directions)
@@ -244,6 +265,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
+        Debug.Log($"Flood fill completed: allTilesValid={allTilesValid}");
         return allTilesValid;
     }
 
@@ -253,7 +275,9 @@ public class GridManager : MonoBehaviour
         Collider2D[] results = new Collider2D[1];
         Vector2 tileCenter = tileBounds.center;
         Vector2 tileSize = tileBounds.size;
-        return Physics2D.OverlapBox(tileCenter, tileSize, collider.transform.eulerAngles.z, new ContactFilter2D(), results) > 0;
+        bool isOverlapping = Physics2D.OverlapBox(tileCenter, tileSize, collider.transform.eulerAngles.z, new ContactFilter2D(), results) > 0;
+        Debug.Log($"Tile overlap check: tileBounds={tileBounds}, isOverlapping={isOverlapping}");
+        return isOverlapping;
     }
 
     // Get the bounds of a tile at a given cell position
@@ -261,10 +285,11 @@ public class GridManager : MonoBehaviour
     {
         Vector3 tileWorldPosition = tilemap.GetCellCenterWorld(tileCell);
         Vector3 tileSize = tilemap.cellSize;
-        return new Bounds(tileWorldPosition, tileSize);
+        Bounds tileBounds = new Bounds(tileWorldPosition, tileSize);
+        Debug.Log($"Tile bounds: tileCell={tileCell}, tileBounds={tileBounds}");
+        return tileBounds;
     }
 }
-
 
 
 
