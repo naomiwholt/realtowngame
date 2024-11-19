@@ -62,6 +62,12 @@ public class ObjectPlacementManager : MonoBehaviour
                 previewRenderer.color = previewValidColor; // Set transparency
                 previewRenderer.sortingLayerName = "GameWorld"; // Ensure correct layer
             }
+
+            // Ensure there is a BoxCollider2D component
+            if (previewObject.GetComponent<BoxCollider2D>() == null)
+            {
+                Debug.Log("No collider on preview object=");
+            }
         }
     }
 
@@ -81,6 +87,7 @@ public class ObjectPlacementManager : MonoBehaviour
             }
         }
     }
+
 
     public void EndDrag(Vector2 screenPosition, InventoryItemData itemData, InventorySlot slot)
     {

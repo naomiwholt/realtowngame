@@ -4,10 +4,12 @@ using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour
 {
+    private Dictionary<Vector3Int, TileBase> originalTiles = new Dictionary<Vector3Int, TileBase>();
     private HashSet<Vector3Int> occupiedtiles = new HashSet<Vector3Int>();
     public TileBase whiteTile; // Unoccupied tile color
     public TileBase orangeTile; // Occupied tile color
     public TileBase yellowTile; // Preview tile color
+    public TileBase redTile; // Invalid preview tile color
     public Tilemap tilemap;
 
     private Grid grid;
@@ -97,12 +99,19 @@ public class GridManager : MonoBehaviour
                 Vector3Int cellPosition = new Vector3Int(x, y, 0);
                 Vector3 worldPosition = tilemap.CellToWorld(cellPosition);
 
-                if (collider.OverlapPoint(worldPosition))
+                if (tilemap.HasTile(cellPosition) && collider.OverlapPoint(worldPosition))
                 {
                     currentPreviewTiles.Add(cellPosition);
                     if (showPreview)
                     {
-                        tilemap.SetTile(cellPosition, yellowTile);
+                        if (IsTileOccupied(cellPosition))
+                        {
+                            tilemap.SetTile(cellPosition, redTile);
+                        }
+                        else
+                        {
+                            tilemap.SetTile(cellPosition, yellowTile);
+                        }
                     }
                 }
             }
@@ -113,31 +122,82 @@ public class GridManager : MonoBehaviour
             // Clear previously previewed tiles that are no longer in the current preview set
             foreach (Vector3Int cell in previousPreviewTiles)
             {
-                if (!currentPreviewTiles.Contains(cell))
+                if (!currentPreviewTiles.Contains(cell) && originalTiles.ContainsKey(cell))
                 {
-                    // Reset the tile back to whiteTile instead of null
-                    tilemap.SetTile(cell, whiteTile);
+                    tilemap.SetTile(cell, originalTiles[cell]);
+                    originalTiles.Remove(cell);
                 }
             }
             previousPreviewTiles = currentPreviewTiles;
         }
         else
         {
-            // Clear all preview tiles by setting them back to whiteTile
+            // Clear all preview tiles by setting them back to their original state
             foreach (Vector3Int cell in previousPreviewTiles)
             {
-                tilemap.SetTile(cell, whiteTile);
+                if (originalTiles.ContainsKey(cell))
+                {
+                    tilemap.SetTile(cell, originalTiles[cell]);
+                    originalTiles.Remove(cell);
+                }
             }
             previousPreviewTiles.Clear();
         }
     }
+    private HashSet<Vector3Int> FloodFillForPreview(BoxCollider2D collider, Vector3Int centerCell, bool showPreview)
+    {
+        Vector3Int[] directions = {
+            new Vector3Int(1, 0, 0), new Vector3Int(0, 1, 0), new Vector3Int(-1, 0, 0), new Vector3Int(0, -1, 0),
+            new Vector3Int(1, 1, 0), new Vector3Int(-1, 1, 0), new Vector3Int(1, -1, 0), new Vector3Int(-1, -1, 0)
+        };
+
+        var cellsToCheck = new Queue<Vector3Int>(new[] { centerCell });
+        var visitedCells = new HashSet<Vector3Int> { centerCell };
+
+        while (cellsToCheck.Count > 0)
+        {
+            var currentCell = cellsToCheck.Dequeue();
+            if (!IsTileOverlappingWithCollider(collider, GetTileBounds(currentCell))) continue;
+
+            TileBase tile = tilemap.GetTile(currentCell);
+
+            if (showPreview)
+            {
+                // Store original tile if not already stored
+                if (!originalTiles.ContainsKey(currentCell))
+                {
+                    originalTiles[currentCell] = tile;
+                }
+
+                // For preview, set tiles to yellow if unoccupied, red if occupied
+                if (IsTileOccupied(currentCell))
+                {
+                    tilemap.SetTile(currentCell, redTile);
+                }
+                else
+                {
+                    tilemap.SetTile(currentCell, yellowTile);
+                }
+            }
+
+            foreach (var direction in directions)
+            {
+                Vector3Int adjacentCell = currentCell + direction;
+                if (visitedCells.Add(adjacentCell))
+                    cellsToCheck.Enqueue(adjacentCell);
+            }
+        }
+
+        return visitedCells;
+    }
+
     // Flood fill starting from a center cell, marking overlapping tiles
     private bool FloodFillFromCenter(BoxCollider2D collider, Vector3Int centerCell, bool validateOnly)
     {
         Vector3Int[] directions = {
-        new Vector3Int(1, 0, 0), new Vector3Int(0, 1, 0), new Vector3Int(-1, 0, 0), new Vector3Int(0, -1, 0),
-        new Vector3Int(1, 1, 0), new Vector3Int(-1, 1, 0), new Vector3Int(1, -1, 0), new Vector3Int(-1, -1, 0)
-    };
+            new Vector3Int(1, 0, 0), new Vector3Int(0, 1, 0), new Vector3Int(-1, 0, 0), new Vector3Int(0, -1, 0),
+            new Vector3Int(1, 1, 0), new Vector3Int(-1, 1, 0), new Vector3Int(1, -1, 0), new Vector3Int(-1, -1, 0)
+        };
 
         var cellsToCheck = new Queue<Vector3Int>(new[] { centerCell });
         var visitedCells = new HashSet<Vector3Int> { centerCell };
@@ -186,6 +246,7 @@ public class GridManager : MonoBehaviour
 
         return allTilesValid;
     }
+
     // Check if a tile overlaps with a collider
     private bool IsTileOverlappingWithCollider(BoxCollider2D collider, Bounds tileBounds)
     {
@@ -203,8 +264,6 @@ public class GridManager : MonoBehaviour
         return new Bounds(tileWorldPosition, tileSize);
     }
 }
-
-
 
 
 
