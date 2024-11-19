@@ -621,6 +621,7 @@ MonoBehaviour:
   whiteTile: {fileID: 11400000, guid: 4664eece6573a4543891eea61d5a935d, type: 2}
   orangeTile: {fileID: 11400000, guid: d73fa4a217984b54099df40050366dda, type: 2}
   yellowTile: {fileID: 11400000, guid: fdbb64d7efc975c4cafade0ae60ceeb2, type: 2}
+  redTile: {fileID: 11400000, guid: 23b13d58a067a8248849cea104f47dd3, type: 2}
   tilemap: {fileID: 5027235538566816115}
 --- !u!114 &5027235538566816116
 MonoBehaviour:

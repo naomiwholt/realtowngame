@@ -125,6 +125,8 @@ public class ObjectPlacementManager : MonoBehaviour
             {
                 EssentialsManager._instance.gridManager.PreviewTilesWithinColliderBounds(collider, false);
             }
+            Destroy(previewObject);
+            previewObject = null;
         }
     }
 

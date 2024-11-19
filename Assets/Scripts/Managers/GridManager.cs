@@ -1,4 +1,4 @@
-// Updated GridManager script with additional debug logs
+// Updated GridManager script to allow free placement on valid tiles
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -57,9 +57,32 @@ public class GridManager : MonoBehaviour
     // Check if the collider fits entirely within valid, unoccupied white tiles
     public bool ValidateColliderWithinValidTiles(BoxCollider2D collider)
     {
-        Vector3Int centerCell = tilemap.WorldToCell(collider.bounds.center);
-        Debug.Log($"Validating collider within tiles: centerCell={centerCell}");
-        return FloodFillFromCenter(collider, centerCell, true);
+        Bounds bounds = collider.bounds;
+        Vector3Int minCell = tilemap.WorldToCell(bounds.min);
+        Vector3Int maxCell = tilemap.WorldToCell(bounds.max);
+
+        Debug.Log($"Validating collider within tiles: minCell={minCell}, maxCell={maxCell}");
+
+        for (int x = minCell.x; x <= maxCell.x; x++)
+        {
+            for (int y = minCell.y; y <= maxCell.y; y++)
+            {
+                Vector3Int cellPosition = new Vector3Int(x, y, 0);
+                Vector3 worldPosition = tilemap.CellToWorld(cellPosition);
+
+                if (collider.OverlapPoint(worldPosition))
+                {
+                    if (IsTileOccupied(cellPosition))
+                    {
+                        Debug.Log($"Validation failed at position={cellPosition}");
+                        return false;
+                    }
+                }
+            }
+        }
+
+        Debug.Log($"Validation passed");
+        return true;
     }
 
     public void MarkObjectTilesAsOccupied(BoxCollider2D collider)
@@ -290,6 +313,5 @@ public class GridManager : MonoBehaviour
         return tileBounds;
     }
 }
-
 
 
