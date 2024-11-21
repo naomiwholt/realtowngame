@@ -18,6 +18,11 @@ public class EssentialsManager : MonoBehaviour
     public ObjectPlacementManager objectPlacementManager;
     public InventoryManager inventoryManager;
 
+
+
+    //Game Objects
+
+    
     private void Awake()
     {
         if (_instance == null)
@@ -30,7 +35,7 @@ public class EssentialsManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-
+        print("Essentials Manager Awake");
         GetManagersReferences();
 
 
@@ -70,6 +75,7 @@ public class EssentialsManager : MonoBehaviour
 
     private void GetManagersReferences()
     {
+         
         gameManager = GetComponentInChildren<GameManager>();
         uiManager = GetComponentInChildren<UIManager>();
         sceneController = GetComponentInChildren<SceneController>();
@@ -83,9 +89,10 @@ public class EssentialsManager : MonoBehaviour
 
     private void InitializeManagersForMainMenu()
     {
-       
+       gridManager.gameObject.SetActive(false);
     }
 
+    // Remove gridManager activation from InitializeManagersForPlay
     private void InitializeManagersForPlay()
     {
         objectPlacementManager.Initialise();

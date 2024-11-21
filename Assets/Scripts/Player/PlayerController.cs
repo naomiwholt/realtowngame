@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+      //  gameObject.SetActive(false); // Ensure the player is initially disabled
         depthSortingManager = FindObjectOfType<DepthSortingManager>();
         if (depthSortingManager == null)
         {

@@ -63,6 +63,8 @@ public class SceneController : MonoBehaviour
 
         SceneLoadComplete = true;
         Debug.Log(sceneName + " is loaded.");
+
+        // Ensure the player spawns at the designated point
         EssentialsManager._instance.gameManager.StartGame();
     }
 

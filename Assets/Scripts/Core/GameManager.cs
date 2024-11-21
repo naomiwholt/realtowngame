@@ -22,27 +22,27 @@ public class GameManager : MonoBehaviour
     public void UpdateGameState(GameState newState)
     {
         currentState = newState;
-        OnGameStateChanged?.Invoke(newState);  // Notify all listeners of the state change
+        OnGameStateChanged?.Invoke(newState);
 
-        switch(newState)
+        switch (newState)
         {
-            case GameState.MainMenu:              
-            break;
-
-            case GameState.Loading:
-         
-    
+            case GameState.MainMenu:
+                EssentialsManager._instance.player.gameObject.SetActive(false);
                 break;
-
-            case GameState.Playing:                      
-            break;
-
-            case GameState.Paused:           
-            Time.timeScale = 0f;
-            break;
-
-            case GameState.GameOver:    
-            break;
+            case GameState.Loading:
+                EssentialsManager._instance.player.gameObject.SetActive(false);
+                
+                break;
+            case GameState.Playing:
+                EssentialsManager._instance.player.gameObject.SetActive(true);
+                break;
+            case GameState.Paused:
+                
+                Time.timeScale = 0f;
+                break;
+            case GameState.GameOver:
+                EssentialsManager._instance.player.gameObject.SetActive(false);
+                break;
         }
     }
 
@@ -52,13 +52,15 @@ public class GameManager : MonoBehaviour
         EssentialsManager._instance.sceneController.LoadScene(scenename);
     }
 
-   
 
-    public void StartGame() // should maybe put a scene ready bool or something here later? 
+
+    public void StartGame()
     {
-        UpdateGameState(GameState.Playing);  
-       
+        UpdateGameState(GameState.Playing);
+        Vector3 spawnPosition = GameObject.Find("PlayerSpawnPoint").transform.position;
+        GameObject player = EssentialsManager._instance.player.gameObject;
+        player.transform.position = spawnPosition;
     }
-  
+
 }
 
