@@ -15,7 +15,6 @@ public class ObjectPlacementManager : MonoBehaviour
     public void Initialise()
     {
         CollectFurnitureObjects();
-        MarkPreExistingObjects();
     }
 
     private void CollectFurnitureObjects()
@@ -33,18 +32,6 @@ public class ObjectPlacementManager : MonoBehaviour
         else
         {
             Debug.LogWarning("No GameObject named 'Furniture' found in the scene.");
-        }
-    }
-
-    private void MarkPreExistingObjects()
-    {
-        foreach (var obj in preExistingObjects)
-        {
-            BoxCollider2D[] childColliders = obj.GetComponentsInChildren<BoxCollider2D>();
-            foreach (var collider in childColliders)
-            {
-                EssentialsManager._instance.gridManager.MarkObjectTilesAsOccupied(collider);
-            }
         }
     }
 
@@ -66,11 +53,10 @@ public class ObjectPlacementManager : MonoBehaviour
             // Ensure there is a BoxCollider2D component
             if (previewObject.GetComponent<BoxCollider2D>() == null)
             {
-                Debug.Log("No collider on preview object=");
+                Debug.Log("No collider on preview object.");
             }
         }
     }
-
 
     public void UpdateDragPosition(Vector2 screenPosition)
     {
@@ -83,11 +69,31 @@ public class ObjectPlacementManager : MonoBehaviour
             BoxCollider2D collider = previewObject.GetComponentInChildren<BoxCollider2D>();
             if (collider != null)
             {
-                EssentialsManager._instance.gridManager.PreviewTilesWithinColliderBounds(collider, true);
+                bool isValid = !IsOverlappingWithOtherObjects(collider);
+                SpriteRenderer previewRenderer = previewObject.GetComponent<SpriteRenderer>();
+                if (previewRenderer != null)
+                {
+                    previewRenderer.color = isValid ? previewValidColor : previewInvalidColor;
+                }
             }
         }
     }
 
+    private bool IsOverlappingWithOtherObjects(BoxCollider2D collider)
+    {
+        Collider2D[] results = new Collider2D[10];
+        int count = Physics2D.OverlapCollider(collider, new ContactFilter2D(), results);
+
+        // Check if any of the colliders in results are not the original collider
+        for (int i = 0; i < count; i++)
+        {
+            if (results[i] != null && results[i] != collider)
+            {
+                return true; // Overlapping with another object
+            }
+        }
+        return false; // No overlaps with other objects
+    }
 
     public void EndDrag(Vector2 screenPosition, InventoryItemData itemData, InventorySlot slot)
     {
@@ -97,41 +103,29 @@ public class ObjectPlacementManager : MonoBehaviour
             worldPosition.z = 0;
 
             BoxCollider2D collider = previewObject.GetComponentInChildren<BoxCollider2D>();
-            if (collider != null && EssentialsManager._instance.gridManager.ValidateColliderWithinValidTiles(collider))
+            if (collider != null && !IsOverlappingWithOtherObjects(collider))
             {
                 slot.ClearSlot();
                 EssentialsManager._instance.inventoryManager.RemoveItem(itemData);
-                EssentialsManager._instance.objectPlacementManager.PlaceFurniture(itemData.prefab, worldPosition);
+                PlaceFurniture(itemData.prefab, worldPosition);
             }
             else
             {
-                Debug.LogWarning("Cannot place furniture; part of the object is outside valid tiles or overlaps an occupied tile.");
+                Debug.LogWarning("Cannot place furniture; it overlaps with another object.");
             }
             ClearPreview();
             Destroy(previewObject);
         }
     }
 
-
-
-
-
     public void ClearPreview()
     {
         if (previewObject != null)
         {
-            BoxCollider2D collider = previewObject.GetComponentInChildren<BoxCollider2D>();
-            if (collider != null)
-            {
-                EssentialsManager._instance.gridManager.PreviewTilesWithinColliderBounds(collider, false);
-            }
             Destroy(previewObject);
             previewObject = null;
         }
     }
-
-
-
 
     public void PlaceFurniture(GameObject furniturePrefab, Vector3 worldPosition)
     {
@@ -149,13 +143,6 @@ public class ObjectPlacementManager : MonoBehaviour
             return;
         }
 
-        Vector3Int gridPosition = EssentialsManager._instance.gridManager.tilemap.WorldToCell(worldPosition);
-        if (EssentialsManager._instance.gridManager.IsTileOccupied(gridPosition))
-        {
-            Debug.LogWarning("Cannot place furniture here, the tile is already occupied.");
-            return;
-        }
-       Debug.Log("Furniture placed at " + worldPosition);   
         GameObject furnitureInstance = Instantiate(furniturePrefab, worldPosition, Quaternion.identity);
         SceneManager.MoveGameObjectToScene(furnitureInstance, currentGameplayScene);
 
@@ -170,20 +157,8 @@ public class ObjectPlacementManager : MonoBehaviour
         furnitureInstanceRenderer.sortingLayerName = "GameWorld";
         EssentialsManager._instance.sortingManager.AddToSortingList(furnitureInstanceRenderer);
         EssentialsManager._instance.sortingManager.SortSprites();
-
-        BoxCollider2D collider = furnitureInstance.GetComponentInChildren<BoxCollider2D>();
-        if (collider != null)
-        {
-            EssentialsManager._instance.gridManager.MarkObjectTilesAsOccupied(collider);
-        }
-        else
-        {
-            EssentialsManager._instance.gridManager.MarkTileAsOccupied(gridPosition);
-        }
     }
 }
-
-
 
 
 

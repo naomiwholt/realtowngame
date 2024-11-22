@@ -70,6 +70,8 @@
     <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\Managers\SceneController.cs" />
     <Compile Include="Assets\Scripts\Managers\GridManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\RoomVisibilityManager.cs" />
+    <Compile Include="Assets\Scripts\Environment\RoomTrigger.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\UI\Inventory\InventorySlot.cs" />

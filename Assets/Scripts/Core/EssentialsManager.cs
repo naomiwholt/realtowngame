@@ -17,6 +17,7 @@ public class EssentialsManager : MonoBehaviour
     public PlayerController player;
     public ObjectPlacementManager objectPlacementManager;
     public InventoryManager inventoryManager;
+    public RoomVisibilityManager roomVisibilityManager;
 
 
 
