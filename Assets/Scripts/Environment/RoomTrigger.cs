@@ -11,6 +11,7 @@ public class RoomTrigger : MonoBehaviour
         {
             RoomVisibilityManager.Instance.PlayerEnteredRoom(this);
         }
+        Debug.Log("Player entered " + RoomName);
     }
 
     private void OnTriggerExit2D(Collider2D other)
