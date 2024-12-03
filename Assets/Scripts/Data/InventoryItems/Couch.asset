@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Couch
   icon: {fileID: 1970101170, guid: 803a9beb6b79005439f8fcd028a9f1cb, type: 3}
-  prefab: {fileID: 5678312629177222150, guid: b5ec8be3259a1ca4e86d69cbd38be547, type: 3}
+  itemPrefab: {fileID: 5678312629177222150, guid: b5ec8be3259a1ca4e86d69cbd38be547, type: 3}
   description: a couch to sit on
   maxStackSize: 1
+  canRotate: 0
+  NorthSprite: {fileID: 0}
+  SouthSprite: {fileID: 0}

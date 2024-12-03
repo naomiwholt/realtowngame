@@ -31,7 +31,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        EssentialsManager._instance.objectPlacementManager.StartDrag(inventoryItem.prefab);
+        EssentialsManager._instance.objectPlacementManager.StartDrag(inventoryItem.itemPrefab);
     }
 
     public void OnDrag(PointerEventData eventData)

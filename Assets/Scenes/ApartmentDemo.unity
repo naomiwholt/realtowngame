@@ -217,6 +217,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2451814422616419099, guid: d39b80adbd13b104ca17e0c1eeff1895, type: 3}
   m_PrefabInstance: {fileID: 4745386936232299386}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &339534691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 339534692}
+  m_Layer: 0
+  m_Name: Walls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &339534692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339534691}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.90996265, y: -15.122261, z: -0.006124299}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1506955251}
+  - {fileID: 835958532}
+  - {fileID: 1773854001}
+  - {fileID: 1011845346}
+  - {fileID: 1937166687}
+  - {fileID: 89606341}
+  - {fileID: 318110495}
+  - {fileID: 730038911}
+  - {fileID: 767740659}
+  m_Father: {fileID: 482804304}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &482804303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 482804304}
+  m_Layer: 0
+  m_Name: Game World
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &482804304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482804303}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.4099627, y: 15.122261, z: 0.006124299}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 339534692}
+  - {fileID: 1398752138}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &492461163
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,8 +374,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.83622, y: 1.0757694}
-  - {x: 1.1228144, y: -2.0496254}
+  - {x: -1.7523348, y: 1.2225676}
+  - {x: 1.2276708, y: -1.7350559}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -349,6 +422,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 680926285}
+  - component: {fileID: 680926289}
+  - component: {fileID: 680926288}
+  - component: {fileID: 680926287}
+  - component: {fileID: 680926286}
   m_Layer: 0
   m_Name: Living Room
   m_TagString: Untagged
@@ -371,6 +448,143 @@ Transform:
   m_Children: []
   m_Father: {fileID: 295738429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &680926286
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680926284}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 5.5187483, y: -3.6909394}
+  - {x: 7.0220575, y: -5.2218404}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!68 &680926287
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680926284}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -1.8002174, y: -1.1324482}
+  - {x: 0.75165486, y: 1.0905046}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!68 &680926288
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680926284}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -3.8344283, y: -3.040831}
+  - {x: -2.6247158, y: -1.8664408}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!114 &680926289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680926284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8e9638af02af2449a926ec504d2d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Walls: []
+  RoomName: Living Room
 --- !u!1 &730038910 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3636152084067598586, guid: 37d06d0075a4fa94c934d8b8de2dcfd3, type: 3}
@@ -419,10 +633,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1773854001}
-  - {fileID: 835958532}
-  - {fileID: 1506955251}
+  m_Children: []
   m_Father: {fileID: 258369275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &821629049
@@ -453,9 +664,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1937166687}
-  - {fileID: 1011845346}
+  m_Children: []
   m_Father: {fileID: 258369275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &835958532 stripped
@@ -504,6 +713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 990245458}
   - component: {fileID: 990245459}
+  - component: {fileID: 990245460}
   m_Layer: 0
   m_Name: Denny's Room Trigger
   m_TagString: Untagged
@@ -540,6 +750,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Walls: []
   RoomName: Denny's Room
+--- !u!68 &990245460
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990245457}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 1.9034281, y: -0.03814888}
+  - {x: 3.3993733, y: -1.449687}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!4 &1011845346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8150669833439819163, guid: 75a3eb4e8424bb649b9529e60723c7c6, type: 3}
@@ -573,9 +824,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 730038911}
-  - {fileID: 767740659}
+  m_Children: []
   m_Father: {fileID: 258369275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1108482778
@@ -633,8 +882,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398752137}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4, y: 17.38, z: 0.041501112}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.8099627, y: 2.257738, z: 0.035376813}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -647,7 +896,7 @@ Transform:
   - {fileID: 469353321877518050}
   - {fileID: 2726931248071103341}
   - {fileID: 5678312628289571393}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 482804304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1487263534
 GameObject:
@@ -981,9 +1230,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 318110495}
-  - {fileID: 89606341}
+  m_Children: []
   m_Father: {fileID: 258369275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1937166686 stripped
@@ -1007,6 +1254,7 @@ GameObject:
   - component: {fileID: 1973599637}
   - component: {fileID: 1973599638}
   - component: {fileID: 1973599639}
+  - component: {fileID: 1973599640}
   m_Layer: 0
   m_Name: Entrance Room Trigger
   m_TagString: Untagged
@@ -1082,6 +1330,47 @@ EdgeCollider2D:
   m_Points:
   - {x: -1.9708827, y: -0.98744583}
   - {x: 0.40742695, y: 1.3680239}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!68 &1973599640
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973599636}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -3.1423776, y: 5.2008686}
+  - {x: -0.23399377, y: 2.1180964}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -1174,7 +1463,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1875804226}
+    m_TransformParent: {fileID: 339534692}
     m_Modifications:
     - target: {fileID: 683886180946569689, guid: 14721662c164d954db26cdeda2425d48, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1219,6 +1508,10 @@ PrefabInstance:
     - target: {fileID: 1428884717645170846, guid: 14721662c164d954db26cdeda2425d48, type: 3}
       propertyPath: m_Name
       value: Lit Room Wall with Door 2 North East
+      objectReference: {fileID: 0}
+    - target: {fileID: 1428884717645170846, guid: 14721662c164d954db26cdeda2425d48, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1545,7 +1838,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 819954100}
+    m_TransformParent: {fileID: 339534692}
     m_Modifications:
     - target: {fileID: 514267829872426748, guid: d24fef60b7346e2438391e17f5cdbe35, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1590,6 +1883,10 @@ PrefabInstance:
     - target: {fileID: 1036238276648517927, guid: d24fef60b7346e2438391e17f5cdbe35, type: 3}
       propertyPath: m_Name
       value: Bottom Left Corner Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036238276648517927, guid: d24fef60b7346e2438391e17f5cdbe35, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1659,15 +1956,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1028417811}
+    m_TransformParent: {fileID: 339534692}
     m_Modifications:
+    - target: {fileID: 587443690502666794, guid: c894483900ef7f044830612792f5e184, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4861779668466093367, guid: c894483900ef7f044830612792f5e184, type: 3}
       propertyPath: m_Name
       value: Lit Room Wall with Door North West
       objectReference: {fileID: 0}
+    - target: {fileID: 4861779668466093367, guid: c894483900ef7f044830612792f5e184, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 5729704097897914774, guid: c894483900ef7f044830612792f5e184, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.78
+      value: -3.7799997
       objectReference: {fileID: 0}
     - target: {fileID: 5729704097897914774, guid: c894483900ef7f044830612792f5e184, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1716,7 +2021,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 821629050}
+    m_TransformParent: {fileID: 339534692}
     m_Modifications:
     - target: {fileID: 7029937108234751886, guid: 853e0210a92741042bee7732b78924d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1761,6 +2066,10 @@ PrefabInstance:
     - target: {fileID: 8960483269381581414, guid: 853e0210a92741042bee7732b78924d3, type: 3}
       propertyPath: m_Name
       value: Lit Room Wall with Door North East
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960483269381581414, guid: 853e0210a92741042bee7732b78924d3, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1830,7 +2139,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 819954100}
+    m_TransformParent: {fileID: 339534692}
     m_Modifications:
     - target: {fileID: 2723813883048454363, guid: 0623a9ac2c42a6d4c9ac4cb06e70e055, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1876,6 +2185,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackRightWall
       objectReference: {fileID: 0}
+    - target: {fileID: 3353964376001165852, guid: 0623a9ac2c42a6d4c9ac4cb06e70e055, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1887,11 +2200,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1875804226}
+    m_TransformParent: {fileID: 339534692}
     m_Modifications:
     - target: {fileID: 1141583403981104692, guid: d39b80adbd13b104ca17e0c1eeff1895, type: 3}
       propertyPath: m_Name
       value: Dark Room Wall North West
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141583403981104692, guid: d39b80adbd13b104ca17e0c1eeff1895, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 2451814422616419099, guid: d39b80adbd13b104ca17e0c1eeff1895, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2084,7 +2401,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 819954100}
+    m_TransformParent: {fileID: 339534692}
     m_Modifications:
     - target: {fileID: 788418378120283305, guid: 771149e581539794da3ac898aabf652a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2130,6 +2447,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackLeftWall
       objectReference: {fileID: 0}
+    - target: {fileID: 996566177872063063, guid: 771149e581539794da3ac898aabf652a, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2141,11 +2462,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1028417811}
+    m_TransformParent: {fileID: 339534692}
     m_Modifications:
     - target: {fileID: 3636152084067598586, guid: 37d06d0075a4fa94c934d8b8de2dcfd3, type: 3}
       propertyPath: m_Name
       value: Lit Room Wall North East
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636152084067598586, guid: 37d06d0075a4fa94c934d8b8de2dcfd3, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 8303045403352534295, guid: 37d06d0075a4fa94c934d8b8de2dcfd3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2342,11 +2667,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 821629050}
+    m_TransformParent: {fileID: 339534692}
     m_Modifications:
     - target: {fileID: 7594205688447856017, guid: 75a3eb4e8424bb649b9529e60723c7c6, type: 3}
       propertyPath: m_Name
       value: Lit Room Wall North West
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594205688447856017, guid: 75a3eb4e8424bb649b9529e60723c7c6, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 8150669833439819163, guid: 75a3eb4e8424bb649b9529e60723c7c6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2398,6 +2727,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 258369275}
-  - {fileID: 1398752138}
   - {fileID: 1108482779}
   - {fileID: 295738429}
+  - {fileID: 482804304}

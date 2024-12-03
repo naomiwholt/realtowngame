@@ -86,6 +86,7 @@ public class EssentialsManager : MonoBehaviour
         player = GetComponentInChildren<PlayerController>();
         objectPlacementManager = GetComponentInChildren<ObjectPlacementManager>();
         inventoryManager = GetComponentInChildren<InventoryManager>();
+        roomVisibilityManager = GetComponentInChildren<RoomVisibilityManager>();
     }
 
     private void InitializeManagersForMainMenu()
@@ -100,6 +101,7 @@ public class EssentialsManager : MonoBehaviour
         sortingManager.InitialiseSorting();
         inventoryManager.Initialise();
         player.Initialise();
+        roomVisibilityManager.Initialise();
     }
 
     private void InitializeManagersForPause()

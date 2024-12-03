@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Fridge
   icon: {fileID: 1118076852, guid: 803a9beb6b79005439f8fcd028a9f1cb, type: 3}
-  prefab: {fileID: 861265701689323848, guid: b384b31be36463d4ba91f87b75afe206, type: 3}
+  itemPrefab: {fileID: 861265701689323848, guid: b384b31be36463d4ba91f87b75afe206, type: 3}
   description: A fridge to put food in
   maxStackSize: 1
+  canRotate: 0
+  NorthSprite: {fileID: 0}
+  SouthSprite: {fileID: 0}

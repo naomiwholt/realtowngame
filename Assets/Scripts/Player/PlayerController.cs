@@ -42,41 +42,40 @@ public class PlayerController : MonoBehaviour
     {
         if (depthSortingManager != null)
         {
-            // Add player to the sorting list on entering the trigger
-            depthSortingManager.AddToSortingList(GetComponent<SpriteRenderer>());
+            depthSortingManager.AddToDynamicSorting(GetComponent<SpriteRenderer>());
 
-            // Add other objects to the sorting list
             Transform parentObject = other.transform.parent;
             if (parentObject != null)
             {
                 SpriteRenderer sprite = parentObject.GetComponent<SpriteRenderer>();
                 if (sprite != null)
                 {
-                    depthSortingManager.AddToSortingList(sprite);
+                    depthSortingManager.AddToDynamicSorting(sprite);
                 }
             }
+
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (depthSortingManager != null)
-        {
-            // Remove player from the sorting list on exiting the trigger
-            depthSortingManager.RemoveFromSortingList(GetComponent<SpriteRenderer>());
-
-            // Remove other objects from the sorting list
-            Transform parentObject = other.transform.parent;
-            if (parentObject != null)
-            {
-                SpriteRenderer sprite = parentObject.GetComponent<SpriteRenderer>();
-                if (sprite != null)
-                {
-                    depthSortingManager.RemoveFromSortingList(sprite);
-                }
-            }
-        }
-    }
+   // private void OnTriggerExit2D(Collider2D other)
+   // {
+   //     if (depthSortingManager != null)
+   //     {
+   //         // Remove player from the sorting list on exiting the trigger
+   //         depthSortingManager.RemoveFromSortingList(GetComponent<SpriteRenderer>());
+   //
+   //         // Remove other objects from the sorting list
+   //         Transform parentObject = other.transform.parent;
+   //         if (parentObject != null)
+   //         {
+   //             SpriteRenderer sprite = parentObject.GetComponent<SpriteRenderer>();
+   //             if (sprite != null)
+   //             {
+   //                 depthSortingManager.RemoveFromSortingList(sprite);
+   //             }
+   //         }
+   //     }
+   // }
 
    
 

@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Bin
   icon: {fileID: -1231211509, guid: 803a9beb6b79005439f8fcd028a9f1cb, type: 3}
-  prefab: {fileID: 2681937359439538726, guid: 410f6bb6a7dbb54489e1c64f961e6c31, type: 3}
+  itemPrefab: {fileID: 2681937359439538726, guid: 410f6bb6a7dbb54489e1c64f961e6c31, type: 3}
   description: a bin to put rubish in
   maxStackSize: 1
+  canRotate: 0
+  NorthSprite: {fileID: 0}
+  SouthSprite: {fileID: 0}

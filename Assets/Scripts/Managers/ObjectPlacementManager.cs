@@ -37,6 +37,7 @@ public class ObjectPlacementManager : MonoBehaviour
 
     public void StartDrag(GameObject furniturePrefab)
     {
+        Debug.Log("Start drag method called");
         if (furniturePrefab != null)
         {
             // Instantiate a preview object for visual feedback
@@ -55,6 +56,10 @@ public class ObjectPlacementManager : MonoBehaviour
             {
                 Debug.Log("No collider on preview object.");
             }
+        }
+        else
+        {
+            Debug.LogWarning("Furniture prefab is null. Cannot start drag.");
         }
     }
 
@@ -107,7 +112,7 @@ public class ObjectPlacementManager : MonoBehaviour
             {
                 slot.ClearSlot();
                 EssentialsManager._instance.inventoryManager.RemoveItem(itemData);
-                PlaceFurniture(itemData.prefab, worldPosition);
+                PlaceFurniture(itemData.itemPrefab, worldPosition);
             }
             else
             {
@@ -155,8 +160,12 @@ public class ObjectPlacementManager : MonoBehaviour
         furnitureInstance.layer = LayerMask.NameToLayer("InteractableObject");
         SpriteRenderer furnitureInstanceRenderer = furnitureInstance.GetComponent<SpriteRenderer>();
         furnitureInstanceRenderer.sortingLayerName = "GameWorld";
-        EssentialsManager._instance.sortingManager.AddToSortingList(furnitureInstanceRenderer);
-        EssentialsManager._instance.sortingManager.SortSprites();
+
+
+        //FIX THIS just needs to be updated for dynamic sorting we actually should probabbly just call the initialise sorting method again in depth manabger
+
+     //   EssentialsManager._instance.sortingManager.AddToSortingList(furnitureInstanceRenderer);
+     //   EssentialsManager._instance.sortingManager.SortSprites();
     }
 }
 
