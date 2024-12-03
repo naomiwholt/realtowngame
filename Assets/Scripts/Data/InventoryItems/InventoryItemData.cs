@@ -9,7 +9,7 @@ public class InventoryItemData : ScriptableObject
     public string description;
     public int maxStackSize; 
 
-    public bool canRotate;
+    public bool canRotate = true;
    
     public Sprite NorthSprite;
     public Sprite SouthSprite;
@@ -29,8 +29,9 @@ public class InventoryItemData : ScriptableObject
         if (canRotate)
         {
             CurrentDirection = RotateClockwise(CurrentDirection);
-        }
-        GetDirectionSprite(CurrentDirection, currentPrefab.GetComponent<SpriteRenderer>());
+        }       
+        //can i do this prettier? ehhh
+        currentPrefab.GetComponent<SpriteRenderer>().sprite = GetDirectionSprite(CurrentDirection, currentPrefab.GetComponent<SpriteRenderer>());
     }
 
     public Direction RotateClockwise(Direction currentDirection)
@@ -70,6 +71,7 @@ public class InventoryItemData : ScriptableObject
             default:
                 return icon;
         }
+
     }
 
 

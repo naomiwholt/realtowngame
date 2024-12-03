@@ -18,5 +18,5 @@ MonoBehaviour:
   description: a couch to sit on
   maxStackSize: 1
   canRotate: 0
-  NorthSprite: {fileID: 0}
-  SouthSprite: {fileID: 0}
+  NorthSprite: {fileID: -3468234298166135840, guid: 586156be638c5384d8571b7f8e3e76ad, type: 3}
+  SouthSprite: {fileID: -1003275021746072561, guid: 4d3f6ae4a6b855f4da47e272a2df0d20, type: 3}

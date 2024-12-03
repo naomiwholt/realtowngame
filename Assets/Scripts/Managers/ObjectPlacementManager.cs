@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class ObjectPlacementManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class ObjectPlacementManager : MonoBehaviour
     public List<GameObject> preExistingObjects;
     public DepthSortingManager sortingManager;
 
-    private GameObject previewObject;
+    private GameObject currentSelectedObject;
     private Color previewValidColor = new Color(1, 1, 1, 0.5f); // semi-transparent white
     private Color previewInvalidColor = new Color(1, 0, 0, 0.5f); // semi-transparent red
 
@@ -35,16 +36,16 @@ public class ObjectPlacementManager : MonoBehaviour
         }
     }
 
-    public void StartDrag(GameObject furniturePrefab)
+    public void StartDrag(InventoryItemData itemData)
     {
         Debug.Log("Start drag method called");
-        if (furniturePrefab != null)
+        if (itemData != null && itemData.itemPrefab != null)
         {
             // Instantiate a preview object for visual feedback
-            previewObject = Instantiate(furniturePrefab);
+            currentSelectedObject = Instantiate(itemData.itemPrefab);
 
             // Set the preview object's sorting layer to "GameWorld"
-            SpriteRenderer previewRenderer = previewObject.GetComponent<SpriteRenderer>();
+            SpriteRenderer previewRenderer = currentSelectedObject.GetComponent<SpriteRenderer>();
             if (previewRenderer != null)
             {
                 previewRenderer.color = previewValidColor; // Set transparency
@@ -52,39 +53,56 @@ public class ObjectPlacementManager : MonoBehaviour
             }
 
             // Ensure there is a BoxCollider2D component
-            if (previewObject.GetComponent<BoxCollider2D>() == null)
+            if (currentSelectedObject.GetComponent<PolygonCollider2D>() == null)
             {
                 Debug.Log("No collider on preview object.");
             }
         }
         else
         {
-            Debug.LogWarning("Furniture prefab is null. Cannot start drag.");
+            Debug.LogWarning("ItemData or itemPrefab is null. Cannot start drag.");
         }
     }
 
-    public void UpdateDragPosition(Vector2 screenPosition)
+
+    public void UpdateDragPosition(Vector2 screenPosition, InventoryItemData itemData)
     {
-        if (previewObject != null)
+
+        if (currentSelectedObject != null)
         {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
             worldPosition.z = 0;
-            previewObject.transform.position = worldPosition;
+            currentSelectedObject.transform.position = worldPosition;
+            Debug.Log("Updating drag position");    
 
-            BoxCollider2D collider = previewObject.GetComponentInChildren<BoxCollider2D>();
+            // Handle right-click rotation using Input System
+            if (Mouse.current.rightButton.wasPressedThisFrame && itemData.canRotate)
+            {
+                itemData.RotateItem(currentSelectedObject);
+                Debug.Log("Rotating item");
+            }
+
+            // Validate placement
+            PolygonCollider2D collider = currentSelectedObject.GetComponent<PolygonCollider2D>();
             if (collider != null)
             {
                 bool isValid = !IsOverlappingWithOtherObjects(collider);
-                SpriteRenderer previewRenderer = previewObject.GetComponent<SpriteRenderer>();
+                SpriteRenderer previewRenderer = currentSelectedObject.GetComponent<SpriteRenderer>();
                 if (previewRenderer != null)
                 {
                     previewRenderer.color = isValid ? previewValidColor : previewInvalidColor;
                 }
             }
         }
+        else
+        {
+            Debug.LogWarning("No currentSelectedObject found. Cannot update drag position.");
+        }
     }
 
-    private bool IsOverlappingWithOtherObjects(BoxCollider2D collider)
+
+
+    private bool IsOverlappingWithOtherObjects(PolygonCollider2D collider)
     {
         Collider2D[] results = new Collider2D[10];
         int count = Physics2D.OverlapCollider(collider, new ContactFilter2D(), results);
@@ -102,33 +120,34 @@ public class ObjectPlacementManager : MonoBehaviour
 
     public void EndDrag(Vector2 screenPosition, InventoryItemData itemData, InventorySlot slot)
     {
-        if (previewObject != null)
+        if (currentSelectedObject != null)
         {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
             worldPosition.z = 0;
 
-            BoxCollider2D collider = previewObject.GetComponentInChildren<BoxCollider2D>();
+            PolygonCollider2D collider = currentSelectedObject.GetComponentInChildren<PolygonCollider2D>();
             if (collider != null && !IsOverlappingWithOtherObjects(collider))
             {
                 slot.ClearSlot();
                 EssentialsManager._instance.inventoryManager.RemoveItem(itemData);
                 PlaceFurniture(itemData.itemPrefab, worldPosition);
+                EssentialsManager._instance.sortingManager.InitialiseSorting();
             }
-            else
+            else if (collider != null)
             {
-                Debug.LogWarning("Cannot place furniture; it overlaps with another object.");
+                Debug.LogWarning("Cannot place furniture; as no collider on preview opbject");
             }
             ClearPreview();
-            Destroy(previewObject);
+            Destroy(currentSelectedObject);
         }
     }
 
     public void ClearPreview()
     {
-        if (previewObject != null)
+        if (currentSelectedObject != null)
         {
-            Destroy(previewObject);
-            previewObject = null;
+            Destroy(currentSelectedObject);
+            currentSelectedObject = null;
         }
     }
 

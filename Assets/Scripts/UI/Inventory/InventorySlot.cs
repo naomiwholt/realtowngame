@@ -31,18 +31,19 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        EssentialsManager._instance.objectPlacementManager.StartDrag(inventoryItem.itemPrefab);
+        EssentialsManager._instance.objectPlacementManager.StartDrag(inventoryItem);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        EssentialsManager._instance.objectPlacementManager.UpdateDragPosition(eventData.position);
+        EssentialsManager._instance.objectPlacementManager.UpdateDragPosition(eventData.position, inventoryItem);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         EssentialsManager._instance.objectPlacementManager.EndDrag(eventData.position, inventoryItem, this);
     }
+
 }
 
 
