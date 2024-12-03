@@ -36,6 +36,7 @@ public class InventoryItemData : ScriptableObject
 
     public Direction RotateClockwise(Direction currentDirection)
     {
+        Debug.Log("Rotating item clockwise");
         // Incrementitem direction round the enum
         int nextDirection = ((int)currentDirection + 1) % System.Enum.GetValues(typeof(Direction)).Length;
         return (Direction)nextDirection;
@@ -44,6 +45,7 @@ public class InventoryItemData : ScriptableObject
 
     public Sprite GetDirectionSprite(Direction direction, SpriteRenderer spriteRenderer)
     {
+        Debug.Log("Getting direction sprite");  
         Sprite currentDirection;        
 
         switch (direction)

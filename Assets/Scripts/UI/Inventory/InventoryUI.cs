@@ -1,4 +1,6 @@
+using NUnit.Framework.Interfaces;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class InventoryUI : MonoBehaviour
         inventoryManager = EssentialsManager._instance.inventoryManager;
         UpdateInventoryUI();
     }
+  
 
 
     // Updates inventory slots based on items in InventoryManager

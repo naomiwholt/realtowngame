@@ -12,12 +12,14 @@ public class ObjectPlacementManager : MonoBehaviour
     private GameObject currentSelectedObject;
     private Color previewValidColor = new Color(1, 1, 1, 0.5f); // semi-transparent white
     private Color previewInvalidColor = new Color(1, 0, 0, 0.5f); // semi-transparent red
+    private Color previewDisabledColor = new Color(1, 1, 1, 1f); // normal sprite colour full transparency
 
     public void Initialise()
     {
         CollectFurnitureObjects();
     }
 
+   
     private void CollectFurnitureObjects()
     {
         preExistingObjects = new List<GameObject>();
@@ -43,6 +45,7 @@ public class ObjectPlacementManager : MonoBehaviour
         {
             // Instantiate a preview object for visual feedback
             currentSelectedObject = Instantiate(itemData.itemPrefab);
+          //  itemData.itemPrefab = currentSelectedObject; // Update the itemPrefab reference
 
             // Set the preview object's sorting layer to "GameWorld"
             SpriteRenderer previewRenderer = currentSelectedObject.GetComponent<SpriteRenderer>();
@@ -67,20 +70,20 @@ public class ObjectPlacementManager : MonoBehaviour
 
     public void UpdateDragPosition(Vector2 screenPosition, InventoryItemData itemData)
     {
-
         if (currentSelectedObject != null)
         {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
             worldPosition.z = 0;
             currentSelectedObject.transform.position = worldPosition;
-            Debug.Log("Updating drag position");    
+    
 
-            // Handle right-click rotation using Input System
-            if (Mouse.current.rightButton.wasPressedThisFrame && itemData.canRotate)
+            // Ensure Input System is working and right-click is detected
+            if (Mouse.current != null && Mouse.current.rightButton.isPressed)
             {
                 itemData.RotateItem(currentSelectedObject);
                 Debug.Log("Rotating item");
             }
+
 
             // Validate placement
             PolygonCollider2D collider = currentSelectedObject.GetComponent<PolygonCollider2D>();
@@ -99,6 +102,7 @@ public class ObjectPlacementManager : MonoBehaviour
             Debug.LogWarning("No currentSelectedObject found. Cannot update drag position.");
         }
     }
+
 
 
 
@@ -130,7 +134,7 @@ public class ObjectPlacementManager : MonoBehaviour
             {
                 slot.ClearSlot();
                 EssentialsManager._instance.inventoryManager.RemoveItem(itemData);
-                PlaceFurniture(itemData.itemPrefab, worldPosition);
+                PlaceFurniture(worldPosition);
                 EssentialsManager._instance.sortingManager.InitialiseSorting();
             }
             else if (collider != null)
@@ -151,14 +155,10 @@ public class ObjectPlacementManager : MonoBehaviour
         }
     }
 
-    public void PlaceFurniture(GameObject furniturePrefab, Vector3 worldPosition)
+    public void PlaceFurniture( Vector3 worldPosition)
     {
         Debug.Log("Furniture placing method called");
-        if (furniturePrefab == null)
-        {
-            Debug.LogWarning("Furniture prefab is null. Cannot place furniture.");
-            return;
-        }
+      
 
         Scene currentGameplayScene = EssentialsManager._instance.sceneController.GetCurrentGameplayScene();
         if (!currentGameplayScene.IsValid())
@@ -166,8 +166,8 @@ public class ObjectPlacementManager : MonoBehaviour
             Debug.LogError("No valid gameplay scene found to place furniture.");
             return;
         }
-
-        GameObject furnitureInstance = Instantiate(furniturePrefab, worldPosition, Quaternion.identity);
+        currentSelectedObject.GetComponent<SpriteRenderer>().color = previewDisabledColor;
+        GameObject furnitureInstance = Instantiate(currentSelectedObject, worldPosition, Quaternion.identity);
         SceneManager.MoveGameObjectToScene(furnitureInstance, currentGameplayScene);
 
         GameObject furnitureParent = GameObject.Find("Furniture");
@@ -181,10 +181,7 @@ public class ObjectPlacementManager : MonoBehaviour
         furnitureInstanceRenderer.sortingLayerName = "GameWorld";
 
 
-        //FIX THIS just needs to be updated for dynamic sorting we actually should probabbly just call the initialise sorting method again in depth manabger
-
-     //   EssentialsManager._instance.sortingManager.AddToSortingList(furnitureInstanceRenderer);
-     //   EssentialsManager._instance.sortingManager.SortSprites();
+        
     }
 }
 
