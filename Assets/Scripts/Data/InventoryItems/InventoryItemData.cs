@@ -26,12 +26,12 @@ public class InventoryItemData : ScriptableObject
     //this is to be called in Object placemnt script and will put in that specificc prefab instance
     public void RotateItem(GameObject currentPrefab)
     {
-        if (canRotate)
-        {
+        
             CurrentDirection = RotateClockwise(CurrentDirection);
-        }       
+            
         //can i do this prettier? ehhh
         currentPrefab.GetComponent<SpriteRenderer>().sprite = GetDirectionSprite(CurrentDirection, currentPrefab.GetComponent<SpriteRenderer>());
+        
     }
 
     public Direction RotateClockwise(Direction currentDirection)
@@ -39,13 +39,14 @@ public class InventoryItemData : ScriptableObject
         Debug.Log("Rotating item clockwise");
         // Incrementitem direction round the enum
         int nextDirection = ((int)currentDirection + 1) % System.Enum.GetValues(typeof(Direction)).Length;
+       // Debug.Log("Next direction is " + nextDirection);
         return (Direction)nextDirection;
     }
 
 
     public Sprite GetDirectionSprite(Direction direction, SpriteRenderer spriteRenderer)
     {
-        Debug.Log("Getting direction sprite");  
+        Debug.Log("Getting direction sprite for " + direction);  
         Sprite currentDirection;        
 
         switch (direction)
@@ -57,12 +58,12 @@ public class InventoryItemData : ScriptableObject
 
             case Direction.SouthEast:
                 currentDirection = SouthSprite;
-                spriteRenderer.flipX = false;
+                spriteRenderer.flipX = true;
                 return currentDirection;
 
             case Direction.SouthWest:
                 currentDirection = SouthSprite;
-                spriteRenderer.flipX = true;
+                spriteRenderer.flipX = false;
                 return currentDirection;
 
             case Direction.NorthWest:

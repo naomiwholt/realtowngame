@@ -102,6 +102,8 @@ public class EssentialsManager : MonoBehaviour
         inventoryManager.Initialise();
         player.Initialise();
         roomVisibilityManager.Initialise();
+        gridManager.gameObject.SetActive(true);
+        gridManager.InitialiseDustyFloor();
     }
 
     private void InitializeManagersForPause()

@@ -1,10 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DepthSortingManager : MonoBehaviour
 {
     public List<SpriteRenderer> staticSprites = new List<SpriteRenderer>();  // Static objects sorted once
-    public List<SpriteRenderer> dynamicSprites = new List<SpriteRenderer>(); // Dynamic objects sorted in Update
+    public List<SpriteRenderer> dynamicSprites = new List<SpriteRenderer>(); // Dynamic objects sorted periodically
+
+    private Coroutine dynamicSortingCoroutine;
 
     public void InitialiseSorting()
     {
@@ -22,9 +25,15 @@ public class DepthSortingManager : MonoBehaviour
 
         Debug.Log($"{staticSprites.Count} static sprites initialized for sorting.");
         AssignStaticSortingOrders();
+
+        // Start the coroutine for dynamic sorting
+        if (dynamicSortingCoroutine == null)
+        {
+            dynamicSortingCoroutine = StartCoroutine(SortDynamicSpritesPeriodically());
+        }
     }
 
-    // Recursive method to collect SpriteRenderers
+    // Recursively collect SpriteRenderers from children
     private void AddChildrenSpriteRenderers(Transform parent, List<SpriteRenderer> spriteList)
     {
         foreach (Transform child in parent)
@@ -32,10 +41,10 @@ public class DepthSortingManager : MonoBehaviour
             SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
             if (spriteRenderer != null)
             {
-                spriteList.Add(spriteRenderer); // Add the SpriteRenderer to the list
+                spriteList.Add(spriteRenderer);
             }
 
-            // Recursive call for child objects
+            // Check and add from child objects
             if (child.childCount > 0)
             {
                 AddChildrenSpriteRenderers(child, spriteList);
@@ -43,26 +52,26 @@ public class DepthSortingManager : MonoBehaviour
         }
     }
 
-    // Assign sorting orders to static sprites (once)
+    // Assign sorting orders to static sprites
     private void AssignStaticSortingOrders()
     {
+        Debug.Log("Assigning static sorting orders...");
         staticSprites.Sort((a, b) =>
         {
-            Vector3 aBottomCenter = new Vector3(a.bounds.center.x, a.bounds.min.y, 0f);
-            Vector3 bBottomCenter = new Vector3(b.bounds.center.x, b.bounds.min.y, 0f);
-
-            int yComparison = bBottomCenter.y.CompareTo(aBottomCenter.y);
+            // Sort by Y position of the transform
+            int yComparison = b.transform.position.y.CompareTo(a.transform.position.y);
             if (yComparison != 0) return yComparison;
 
-            return bBottomCenter.x.CompareTo(aBottomCenter.x);
+            // Secondary sort by X position for consistent order
+            return b.transform.position.x.CompareTo(a.transform.position.x);
         });
 
+        // Assign sorting order
         for (int i = 0; i < staticSprites.Count; i++)
         {
             staticSprites[i].sortingOrder = i;
         }
     }
-
 
     // Add dynamic sprites (e.g., player or interactables)
     public void AddToDynamicSorting(SpriteRenderer sprite)
@@ -73,26 +82,27 @@ public class DepthSortingManager : MonoBehaviour
         }
     }
 
-    // Remove dynamic sprites when they leave the trigger
+    // Remove dynamic sprites
     public void RemoveFromDynamicSorting(SpriteRenderer sprite)
     {
-        if (dynamicSprites.Contains(sprite))
-        {
-            dynamicSprites.Remove(sprite);
-        }
+        dynamicSprites.Remove(sprite);
     }
 
-    private void Update()
+    // Coroutine to sort dynamic sprites periodically
+    private IEnumerator SortDynamicSpritesPeriodically()
     {
-        // Only sort dynamic sprites in Update
-        if (dynamicSprites.Count > 0)
+        while (true)
         {
-            SortDynamicSprites();
+            if (dynamicSprites.Count > 0)
+            {
+                SortDynamicSprites();
+            }
+
+            yield return new WaitForSeconds(0.1f); // Adjust interval as needed (e.g., 0.1 seconds)
         }
     }
 
-    //need to just fix how the gates are done so we can work this out later 
-    // Sort dynamic sprites relative to static objects
+    // Sort dynamic sprites based on bounds
     private void SortDynamicSprites()
     {
         dynamicSprites.Sort((a, b) =>
@@ -109,16 +119,24 @@ public class DepthSortingManager : MonoBehaviour
             return bBottomCenter.x.CompareTo(aBottomCenter.x);
         });
 
-        // Assign sorting orders, ensuring dynamic sprites stack on top of static ones
+        // Assign sorting orders, offset by static sprite count
         for (int i = 0; i < dynamicSprites.Count; i++)
         {
-            dynamicSprites[i].sortingOrder = staticSprites.Count + i; // Offset by static sprite count
+            dynamicSprites[i].sortingOrder = staticSprites.Count + i;
         }
     }
 
-
-
+    private void OnDestroy()
+    {
+        // Stop the coroutine if the object is destroyed
+        if (dynamicSortingCoroutine != null)
+        {
+            StopCoroutine(dynamicSortingCoroutine);
+        }
+    }
 }
+
+
 
 
 

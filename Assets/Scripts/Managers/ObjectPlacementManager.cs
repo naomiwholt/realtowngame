@@ -2,24 +2,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class ObjectPlacementManager : MonoBehaviour
 {
     // Scene objects
     public List<GameObject> preExistingObjects;
     public DepthSortingManager sortingManager;
+    private PlayerInputActions playerInputActions;
 
     private GameObject currentSelectedObject;
+    public InventoryItemData currentInventoryItem;
+
     private Color previewValidColor = new Color(1, 1, 1, 0.5f); // semi-transparent white
     private Color previewInvalidColor = new Color(1, 0, 0, 0.5f); // semi-transparent red
     private Color previewDisabledColor = new Color(1, 1, 1, 1f); // normal sprite colour full transparency
 
     public void Initialise()
     {
-        CollectFurnitureObjects();
+        // Initialize the InputActions
+        playerInputActions = new PlayerInputActions();
+
+        // Enable the RotateItem action
+        playerInputActions.Player.RotateItem.Enable();
+
+        // Bind directly to HandleRotation
+        playerInputActions.Player.RotateItem.performed += HandleRotation;
+
+        Debug.Log("ObjectPlacementManager initialized and input bound directly.");
     }
 
-   
+
+
+
+
+
     private void CollectFurnitureObjects()
     {
         preExistingObjects = new List<GameObject>();
@@ -38,9 +55,24 @@ public class ObjectPlacementManager : MonoBehaviour
         }
     }
 
+    public void HandleRotation(InputAction.CallbackContext context)
+    {
+        if (currentSelectedObject != null && currentInventoryItem != null)
+        {
+            currentInventoryItem.RotateItem(currentSelectedObject);
+           
+        }
+        else
+        {
+            Debug.LogWarning("No valid object selected or no rotation allowed.");
+        }
+    }
+
+
     public void StartDrag(InventoryItemData itemData)
     {
-        Debug.Log("Start drag method called");
+        currentInventoryItem = itemData;
+       
         if (itemData != null && itemData.itemPrefab != null)
         {
             // Instantiate a preview object for visual feedback
@@ -76,15 +108,6 @@ public class ObjectPlacementManager : MonoBehaviour
             worldPosition.z = 0;
             currentSelectedObject.transform.position = worldPosition;
     
-
-            // Ensure Input System is working and right-click is detected
-            if (Mouse.current != null && Mouse.current.rightButton.isPressed)
-            {
-                itemData.RotateItem(currentSelectedObject);
-                Debug.Log("Rotating item");
-            }
-
-
             // Validate placement
             PolygonCollider2D collider = currentSelectedObject.GetComponent<PolygonCollider2D>();
             if (collider != null)
@@ -134,7 +157,7 @@ public class ObjectPlacementManager : MonoBehaviour
             {
                 slot.ClearSlot();
                 EssentialsManager._instance.inventoryManager.RemoveItem(itemData);
-                PlaceFurniture(worldPosition);
+                PlaceObject(worldPosition);
                 EssentialsManager._instance.sortingManager.InitialiseSorting();
             }
             else if (collider != null)
@@ -155,7 +178,7 @@ public class ObjectPlacementManager : MonoBehaviour
         }
     }
 
-    public void PlaceFurniture( Vector3 worldPosition)
+    public void PlaceObject( Vector3 worldPosition)
     {
         Debug.Log("Furniture placing method called");
       
@@ -167,17 +190,17 @@ public class ObjectPlacementManager : MonoBehaviour
             return;
         }
         currentSelectedObject.GetComponent<SpriteRenderer>().color = previewDisabledColor;
-        GameObject furnitureInstance = Instantiate(currentSelectedObject, worldPosition, Quaternion.identity);
-        SceneManager.MoveGameObjectToScene(furnitureInstance, currentGameplayScene);
+        GameObject objectInstance = Instantiate(currentSelectedObject, worldPosition, Quaternion.identity);
+        SceneManager.MoveGameObjectToScene(objectInstance, currentGameplayScene);
 
-        GameObject furnitureParent = GameObject.Find("Furniture");
-        if (furnitureParent != null)
+        GameObject objectParent = GameObject.Find("Furniture");
+        if (objectParent != null)
         {
-            furnitureInstance.transform.SetParent(furnitureParent.transform);
+            objectInstance.transform.SetParent(objectParent.transform);
         }
 
-        furnitureInstance.layer = LayerMask.NameToLayer("InteractableObject");
-        SpriteRenderer furnitureInstanceRenderer = furnitureInstance.GetComponent<SpriteRenderer>();
+        objectInstance.layer = LayerMask.NameToLayer("InteractableObject");
+        SpriteRenderer furnitureInstanceRenderer = objectInstance.GetComponent<SpriteRenderer>();
         furnitureInstanceRenderer.sortingLayerName = "GameWorld";
 
 

@@ -3,27 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\naomi\\LoserTown\\RealTown\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|c:\\users\\naomi\\losertown\\realtown\\assets\\scripts\\managers\\objectplacementmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\objectplacementmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\ui\\inventory\\inventoryslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\inventory\\inventoryslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\ui\\inventory\\inventoryui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\inventory\\inventoryui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\data\\inventoryitems\\inventoryitemdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\data\\inventoryitems\\inventoryitemdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\player\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\managers\\depthsortingmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\depthsortingmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\managers\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|c:\\users\\naomi\\losertown\\realtown\\assets\\scripts\\data\\inventoryitems\\inventoryitemdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\data\\inventoryitems\\inventoryitemdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|c:\\users\\naomi\\losertown\\realtown\\assets\\scripts\\managers\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -31,60 +23,24 @@
       "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\essentialsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\managers\\roomvisibilitymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\roomvisibilitymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\environment\\roomtrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\environment\\roomtrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\player\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Library\\PackageCache\\com.unity.2d.tilemap\\Editor\\GridEditorUtility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.2d.tilemap\\Editor\\GridEditorUtility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\core\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Library\\PackageCache\\com.unity.inputsystem@1.11.0\\InputSystem\\Plugins\\UI\\InputSystemUIInputModule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.inputsystem@1.11.0\\InputSystem\\Plugins\\UI\\InputSystemUIInputModule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\ui\\hud\\hudui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\hud\\hudui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\managers\\scenecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\scenecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\managers\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\ui\\inventory\\inventoryui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\inventory\\inventoryui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Data\\InventoryItemData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Data\\InventoryItemData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\EssentialsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Managers\\EssentialsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\ObjectPlacementManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\ObjectPlacementManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\IsometricDepthSorting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\IsometricDepthSorting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\GridManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GridManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\CameraMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\CameraMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|C:\\Users\\naomi\\LoserTown\\RealTown\\assets\\scripts\\managers\\objectplacementmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8ECFBC29-6A7C-DAE6-8FA2-779E572FA382}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\objectplacementmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -94,195 +50,126 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "RoomVisibilityManager.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\RoomVisibilityManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\RoomVisibilityManager.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\RoomVisibilityManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Managers\\RoomVisibilityManager.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwCoAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T05:40:04.716Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "GameManager.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Core\\GameManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\GameManager.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Core\\GameManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Core\\GameManager.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwB0AAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T06:52:21.982Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GridManager.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\GridManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\GridManager.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\GridManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Managers\\GridManager.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowGAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T09:01:33.7Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EssentialsManager.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Core\\EssentialsManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\EssentialsManager.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Core\\EssentialsManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Core\\EssentialsManager.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwFgAAABQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T14:22:20.619Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ObjectPlacementManager.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\ObjectPlacementManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\ObjectPlacementManager.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\ObjectPlacementManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Managers\\ObjectPlacementManager.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAYwDUAAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T14:20:48.652Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "InventorySlot.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\UI\\Inventory\\InventorySlot.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Inventory\\InventorySlot.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\UI\\Inventory\\InventorySlot.cs",
-              "RelativeToolTip": "Assets\\Scripts\\UI\\Inventory\\InventorySlot.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T14:20:36.564Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InventoryUI.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\UI\\Inventory\\InventoryUI.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Inventory\\InventoryUI.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\UI\\Inventory\\InventoryUI.cs",
-              "RelativeToolTip": "Assets\\Scripts\\UI\\Inventory\\InventoryUI.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T14:19:57.024Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "DepthSortingManager.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\DepthSortingManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\DepthSortingManager.cs",
               "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\DepthSortingManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Managers\\DepthSortingManager.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAA4wGEAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAuwFkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-22T00:05:26.338Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "InventoryItemData.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Data\\InventoryItems\\InventoryItemData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Data\\InventoryItems\\InventoryItemData.cs",
               "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Data\\InventoryItems\\InventoryItemData.cs",
               "RelativeToolTip": "Assets\\Scripts\\Data\\InventoryItems\\InventoryItemData.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwC8AAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCYAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T00:54:49.1Z",
+              "WhenOpened": "2024-12-10T04:32:10.367Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RoomTrigger.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Environment\\RoomTrigger.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Environment\\RoomTrigger.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Environment\\RoomTrigger.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Environment\\RoomTrigger.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "GridEditorUtility.cs",
+              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Library\\PackageCache\\com.unity.2d.tilemap\\Editor\\GridEditorUtility.cs",
+              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.2d.tilemap\\Editor\\GridEditorUtility.cs",
+              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Library\\PackageCache\\com.unity.2d.tilemap\\Editor\\GridEditorUtility.cs",
+              "RelativeToolTip": "Library\\PackageCache\\com.unity.2d.tilemap\\Editor\\GridEditorUtility.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T05:43:30.711Z"
+              "WhenOpened": "2024-12-10T01:16:26.025Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "InputSystemUIInputModule.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Library\\PackageCache\\com.unity.inputsystem@1.11.0\\InputSystem\\Plugins\\UI\\InputSystemUIInputModule.cs",
-              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.inputsystem@1.11.0\\InputSystem\\Plugins\\UI\\InputSystemUIInputModule.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Library\\PackageCache\\com.unity.inputsystem@1.11.0\\InputSystem\\Plugins\\UI\\InputSystemUIInputModule.cs",
-              "RelativeToolTip": "Library\\PackageCache\\com.unity.inputsystem@1.11.0\\InputSystem\\Plugins\\UI\\InputSystemUIInputModule.cs",
-              "ViewState": "AgIAAK4AAAAAAAAAAAAWwM0AAAAhAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "GridManager.cs",
+              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\GridManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\GridManager.cs",
+              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\GridManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Managers\\GridManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-26T02:24:41.278Z"
+              "WhenOpened": "2024-12-05T00:39:28.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EssentialsManager.cs",
+              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Core\\EssentialsManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\EssentialsManager.cs",
+              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Core\\EssentialsManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Core\\EssentialsManager.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAcwGcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T14:22:20.619Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
+              "Title": "ObjectPlacementManager.cs",
+              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\ObjectPlacementManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\ObjectPlacementManager.cs",
+              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\ObjectPlacementManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Managers\\ObjectPlacementManager.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T14:20:48.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "InventoryUI.cs",
+              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\UI\\Inventory\\InventoryUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Inventory\\InventoryUI.cs",
+              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\UI\\Inventory\\InventoryUI.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\Inventory\\InventoryUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T14:19:57.024Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Player\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerController.cs",
               "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Player\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerController.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAgwCcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACYAAAAAAAAAAAAowDcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T14:53:07.124Z"
+              "WhenOpened": "2024-11-13T14:53:07.124Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "HUDUI.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\UI\\HUD\\HUDUI.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\HUD\\HUDUI.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\UI\\HUD\\HUDUI.cs",
-              "RelativeToolTip": "Assets\\Scripts\\UI\\HUD\\HUDUI.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBoAAAApAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Core\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\GameManager.cs",
+              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Core\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Core\\GameManager.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAIwB0AAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T07:43:06.864Z"
+              "WhenOpened": "2024-11-19T06:52:21.982Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "InventoryManager.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\InventoryManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\InventoryManager.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\InventoryManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Managers\\InventoryManager.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAADwvzYAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T13:56:53.881Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "InventoryItemData.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Data\\InventoryItemData.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Data\\InventoryItemData.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Data\\InventoryItemData.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Data\\InventoryItemData.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T12:54:50.09Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 7,
               "Title": "SceneController.cs",
               "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\SceneController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\SceneController.cs",
@@ -291,66 +178,6 @@
               "ViewState": "AgIAAC4AAAAAAAAAAAAUwEMAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-17T07:34:49.345Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "EssentialsManager.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\EssentialsManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\EssentialsManager.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\Managers\\EssentialsManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Managers\\EssentialsManager.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwC0AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T07:25:36.332Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ObjectPlacementManager.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\ObjectPlacementManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\ObjectPlacementManager.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\ObjectPlacementManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\ObjectPlacementManager.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwB8AAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T07:15:44.517Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "IsometricDepthSorting.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\IsometricDepthSorting.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\IsometricDepthSorting.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\IsometricDepthSorting.cs",
-              "RelativeToolTip": "Assets\\Scripts\\IsometricDepthSorting.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAgwFwAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T06:58:12.284Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "GridManager.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\GridManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\GridManager.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\GridManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\GridManager.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAowBgAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T06:52:18.669Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "CameraMovement.cs",
-              "DocumentMoniker": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\CameraMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\CameraMovement.cs",
-              "ToolTip": "C:\\Users\\naomi\\LoserTown\\RealTown\\Assets\\Scripts\\CameraMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\CameraMovement.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAYwCYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T06:34:01.885Z"
             }
           ]
         }
