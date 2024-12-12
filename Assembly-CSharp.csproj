@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Core\GameManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\Managers\GridManager.cs" />
+    <Compile Include="Assets\Scripts\Controllers\DynamicSortingComponent.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Managers\DepthSortingManager.cs" />
   </ItemGroup>

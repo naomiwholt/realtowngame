@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class RoomVisibilityManager : MonoBehaviour
 {
-    public static RoomVisibilityManager Instance;
+   // public static RoomVisibilityManager Instance;
 
     private List<GameObject[]> activeWalls = new List<GameObject[]>();
     public List<GameObject> allWalls = new List<GameObject>();
 
     public string ActiveRoomName { get; private set; }
+
     public void Initialise()
     {
-        //will need to change this to a more generaic background name for all scvenes in the game later on
+        // Find and store all walls with the tag "Wall" under the "Walls" parent object
         GameObject WallsParentObject = GameObject.Find("Walls");
         if (WallsParentObject != null)
         {
@@ -33,23 +34,39 @@ public class RoomVisibilityManager : MonoBehaviour
     {
         foreach (var wall in allWalls)
         {
-            wall.SetActive(true);
+            ToggleWallSprite(wall, true);
         }
     }
 
     public void PlayerEnteredRoom(RoomTrigger roomTrigger)
     {
         TurnOnAllWalls();
-        // Hide walls for the entered room
+
+        // Hide wall sprites for the entered room
         foreach (var wall in roomTrigger.Walls)
         {
-            wall.SetActive(false);
+            ToggleWallSprite(wall, false);
         }
 
         ActiveRoomName = roomTrigger.RoomName;
+
         // Keep track of active walls in case you want to revert changes later
         activeWalls.Add(roomTrigger.Walls);
         Debug.Log("Player entered " + roomTrigger.RoomName);
     }
 
+    private void ToggleWallSprite(GameObject wall, bool isVisible)
+    {
+        SpriteRenderer spriteRenderer = wall.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = isVisible; // Enable or disable the sprite
+        }
+        else
+        {
+            Debug.LogWarning($"GameObject {wall.name} does not have a SpriteRenderer component!");
+        }
+    }
 }
+
+

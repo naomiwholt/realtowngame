@@ -5,18 +5,20 @@ using UnityEngine;
 public class DepthSortingManager : MonoBehaviour
 {
     public List<SpriteRenderer> staticSprites = new List<SpriteRenderer>();  // Static objects sorted once
-    public List<SpriteRenderer> dynamicSprites = new List<SpriteRenderer>(); // Dynamic objects sorted periodically
+    
 
     private Coroutine dynamicSortingCoroutine;
+    private Transform furnitureParent;
 
     public void InitialiseSorting()
     {
         staticSprites.Clear();
 
         Transform gameWorld = GameObject.Find("Game World")?.transform; // Find the "Game World" parent
-        if (gameWorld == null)
+        furnitureParent = GameObject.Find("Furniture")?.transform; // Find the "Furniture" parent
+        if (gameWorld == null || furnitureParent == null)
         {
-            Debug.LogError("Game World parent not found!");
+            Debug.LogError("Game World or Furniture parent not found!");
             return;
         }
 
@@ -27,10 +29,7 @@ public class DepthSortingManager : MonoBehaviour
         AssignStaticSortingOrders();
 
         // Start the coroutine for dynamic sorting
-        if (dynamicSortingCoroutine == null)
-        {
-            dynamicSortingCoroutine = StartCoroutine(SortDynamicSpritesPeriodically());
-        }
+
     }
 
     // Recursively collect SpriteRenderers from children
@@ -74,56 +73,88 @@ public class DepthSortingManager : MonoBehaviour
     }
 
     // Add dynamic sprites (e.g., player or interactables)
-    public void AddToDynamicSorting(SpriteRenderer sprite)
-    {
-        if (sprite != null && !dynamicSprites.Contains(sprite))
-        {
-            dynamicSprites.Add(sprite);
-        }
-    }
 
-    // Remove dynamic sprites
-    public void RemoveFromDynamicSorting(SpriteRenderer sprite)
-    {
-        dynamicSprites.Remove(sprite);
-    }
 
-    // Coroutine to sort dynamic sprites periodically
-    private IEnumerator SortDynamicSpritesPeriodically()
+
+
+    //still need to fix this it isnt exactly working
+    public int GetDynamicSortingOrder(SpriteRenderer sprite, List<SpriteRenderer> spritesToSort)
     {
-        while (true)
+        if (sprite == null || spritesToSort == null) return 0;
+
+        // Get the bottom center point of the sprite's bounds
+        Vector3 spriteBottomCenter = new Vector3(sprite.bounds.center.x, sprite.bounds.min.y, 0f);
+
+        int closestBelowOrder = -1; // The highest sorting order below the sprite
+        int closestAboveOrder = int.MaxValue; // The lowest sorting order above the sprite
+
+        foreach (var otherSprite in spritesToSort)
         {
-            if (dynamicSprites.Count > 0)
+            if (otherSprite == null || otherSprite == sprite) continue;
+
+            // Get the bottom center point of the other sprite's bounds
+            Vector3 otherBottomCenter = new Vector3(otherSprite.bounds.center.x, otherSprite.bounds.min.y, 0f);
+
+            if (spriteBottomCenter.y > otherBottomCenter.y)
             {
-                SortDynamicSprites();
+                // Sprite is above this one; track the closest order below
+                closestBelowOrder = Mathf.Max(closestBelowOrder, otherSprite.sortingOrder);
             }
-
-            yield return new WaitForSeconds(0.1f); // Adjust interval as needed (e.g., 0.1 seconds)
+            else if (spriteBottomCenter.y < otherBottomCenter.y)
+            {
+                // Sprite is below this one; track the closest order above
+                closestAboveOrder = Mathf.Min(closestAboveOrder, otherSprite.sortingOrder);
+            }
         }
+
+        // Determine the sorting order
+        int sortingOrder;
+        if (closestBelowOrder != -1 && closestAboveOrder != int.MaxValue)
+        {
+            // Place the sprite between the closest layers
+            sortingOrder = closestBelowOrder + (closestAboveOrder - closestBelowOrder) / 2;
+        }
+        else if (closestBelowOrder != -1)
+        {
+            // Only layers below exist; place above the closest one
+            sortingOrder = closestBelowOrder + 1;
+        }
+        else if (closestAboveOrder != int.MaxValue)
+        {
+            // Only layers above exist; place below the closest one
+            sortingOrder = closestAboveOrder - 1;
+        }
+        else
+        {
+            // Default to a base sorting order if no other sprites are present
+            sortingOrder = staticSprites.Count;
+        }
+
+        // Clamp the sorting order to a minimum of 0
+        sortingOrder = Mathf.Max(0, sortingOrder);
+
+        Debug.Log($"Calculated sorting order for {sprite.gameObject.name}: {sortingOrder}");
+        return sortingOrder;
     }
 
-    // Sort dynamic sprites based on bounds
-    private void SortDynamicSprites()
+
+
+
+
+
+    // Helper to check if a sprite is under the "Furniture" parent
+    private bool IsUnderFurnitureParent(Transform spriteTransform)
     {
-        dynamicSprites.Sort((a, b) =>
+        Transform current = spriteTransform;
+        while (current != null)
         {
-            // Calculate the bottom-center point of each object
-            Vector3 aBottomCenter = new Vector3(a.bounds.center.x, a.bounds.min.y, 0f);
-            Vector3 bBottomCenter = new Vector3(b.bounds.center.x, b.bounds.min.y, 0f);
-
-            // Sort by the Y position of the bottom-center (isometric depth)
-            int yComparison = bBottomCenter.y.CompareTo(aBottomCenter.y);
-            if (yComparison != 0) return yComparison;
-
-            // Secondary sorting by X position (if needed)
-            return bBottomCenter.x.CompareTo(aBottomCenter.x);
-        });
-
-        // Assign sorting orders, offset by static sprite count
-        for (int i = 0; i < dynamicSprites.Count; i++)
-        {
-            dynamicSprites[i].sortingOrder = staticSprites.Count + i;
+            if (current == furnitureParent)
+            {
+                return true;
+            }
+            current = current.parent;
         }
+        return false;
     }
 
     private void OnDestroy()
@@ -135,7 +166,6 @@ public class DepthSortingManager : MonoBehaviour
         }
     }
 }
-
 
 
 
