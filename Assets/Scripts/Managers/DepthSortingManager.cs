@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -76,66 +76,58 @@ public class DepthSortingManager : MonoBehaviour
 
 
 
-
-    //still need to fix this it isnt exactly working
-    public int GetDynamicSortingOrder(SpriteRenderer sprite, List<SpriteRenderer> spritesToSort)
+    public int GetDynamicSortingOrder(SpriteRenderer sprite, List<SpriteRenderer> spritesToCompare)
     {
-        if (sprite == null || spritesToSort == null) return 0;
+        if (sprite == null || spritesToCompare == null)
+            return sprite.sortingOrder;
 
-        // Get the bottom center point of the sprite's bounds
-        Vector3 spriteBottomCenter = new Vector3(sprite.bounds.center.x, sprite.bounds.min.y, 0f);
+        // Use global transform position for Y-sorting
+        float playerY = sprite.transform.position.y;
 
-        int closestBelowOrder = -1; // The highest sorting order below the sprite
-        int closestAboveOrder = int.MaxValue; // The lowest sorting order above the sprite
+        SpriteRenderer closestSprite = null;
+        float smallestYDifference = float.MaxValue;
 
-        foreach (var otherSprite in spritesToSort)
+        foreach (var otherSprite in spritesToCompare)
         {
-            if (otherSprite == null || otherSprite == sprite) continue;
+            if (otherSprite == null || otherSprite == sprite)
+                continue;
 
-            // Get the bottom center point of the other sprite's bounds
-            Vector3 otherBottomCenter = new Vector3(otherSprite.bounds.center.x, otherSprite.bounds.min.y, 0f);
+            float otherY = otherSprite.transform.position.y;
+            float yDifference = Mathf.Abs(playerY - otherY);
 
-            if (spriteBottomCenter.y > otherBottomCenter.y)
+            if (yDifference < smallestYDifference)
             {
-                // Sprite is above this one; track the closest order below
-                closestBelowOrder = Mathf.Max(closestBelowOrder, otherSprite.sortingOrder);
-            }
-            else if (spriteBottomCenter.y < otherBottomCenter.y)
-            {
-                // Sprite is below this one; track the closest order above
-                closestAboveOrder = Mathf.Min(closestAboveOrder, otherSprite.sortingOrder);
+                smallestYDifference = yDifference;
+                closestSprite = otherSprite;
             }
         }
 
-        // Determine the sorting order
-        int sortingOrder;
-        if (closestBelowOrder != -1 && closestAboveOrder != int.MaxValue)
-        {
-            // Place the sprite between the closest layers
-            sortingOrder = closestBelowOrder + (closestAboveOrder - closestBelowOrder) / 2;
-        }
-        else if (closestBelowOrder != -1)
-        {
-            // Only layers below exist; place above the closest one
-            sortingOrder = closestBelowOrder + 1;
-        }
-        else if (closestAboveOrder != int.MaxValue)
-        {
-            // Only layers above exist; place below the closest one
-            sortingOrder = closestAboveOrder - 1;
-        }
-        else
-        {
-            // Default to a base sorting order if no other sprites are present
-            sortingOrder = staticSprites.Count;
-        }
+        if (closestSprite == null)
+            return sprite.sortingOrder;
 
-        // Clamp the sorting order to a minimum of 0
-        sortingOrder = Mathf.Max(0, sortingOrder);
+        float closestY = closestSprite.transform.position.y;
 
-        Debug.Log($"Calculated sorting order for {sprite.gameObject.name}: {sortingOrder}");
-        return sortingOrder;
+        // Adjust sorting order based on relative Y position
+        sprite.sortingOrder = (playerY < closestY)
+            ? closestSprite.sortingOrder + 1 // Player is below → Render in front
+            : closestSprite.sortingOrder - 1; // Player is above → Render behind
+
+        sprite.sortingOrder += 0; // Force Unity to refresh sorting
+
+        return sprite.sortingOrder;
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
